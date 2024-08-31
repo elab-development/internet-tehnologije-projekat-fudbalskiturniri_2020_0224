@@ -3,9 +3,13 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use MongoDB\Laravel\Eloquent\Model as Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use MongoDB\Laravel\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use MongoDB\Laravel\Relations\BelongsToMany;
+
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -17,12 +21,26 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+
+     const ROLE_ADMIN = 'admin';
+     const ROLE_USER = 'user';
+
+     protected $connection = 'mongodb';
+     protected $collection = 'users';
+
     protected $fillable = [
-        'name',
+        'username',
         'email',
         'password',
+        'role',
     ];
 
+
+    public function isAdmin()
+    {
+        return $this->role === self::ROLE_ADMIN;
+    }
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -41,4 +59,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+  
+
 }
