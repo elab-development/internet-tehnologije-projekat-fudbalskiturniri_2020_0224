@@ -61,5 +61,9 @@ class User extends Authenticatable
     ];
 
   
+    public function turniri():BelongsToMany{
+        return $this->belongsToMany(Turnir::class);
+    }
+
 
 }
