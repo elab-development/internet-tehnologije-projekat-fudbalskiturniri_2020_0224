@@ -23,7 +23,7 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
-App\Http\Controllers\IgracController;
+use App\Http\Controllers\IgracController;
  
 //igraci
  
@@ -45,4 +45,23 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('timovi/{id}', [TimController::class, 'update']);
     Route::delete('timovi/{id}', [TimController::class, 'destroy']);
 });
-ima kontekstualni meni
+
+use App\Http\Controllers\UtakmicaController;
+ 
+//utakmice
+ 
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('utakmice', [UtakmicaController::class, 'index']);
+    Route::get('utakmice/{id}', [UtakmicaController::class, 'show']);
+    Route::post('utakmice', [UtakmicaController::class, 'store']);
+    Route::put('utakmice/{id}', [UtakmicaController::class, 'update']);
+    Route::delete('utakmice/{id}', [UtakmicaController::class, 'destroy']);
+});
+ 
+use App\Http\Controllers\TurnirController;
+ 
+//turniri
+ 
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('turniri', TurnirController::class);
+});
