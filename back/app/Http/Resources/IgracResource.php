@@ -19,7 +19,7 @@ class IgracResource extends JsonResource
     
 
         
-        $statistika_igraca = $this->stats_player()->firstWhere('utakmica_id', $utakmicaId);
+        $statistika_igraca = $this->statistika_igraca()->firstWhere('utakmica_id', $utakmicaId);
         
        
 

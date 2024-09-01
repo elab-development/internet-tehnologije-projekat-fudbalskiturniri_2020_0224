@@ -22,3 +22,27 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
+
+App\Http\Controllers\IgracController;
+ 
+//igraci
+ 
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('igraci', [IgracController::class, 'index']);
+    Route::get('igraci/{id}', [IgracController::class, 'show']);
+    Route::post('igraci', [IgracController::class, 'store']);
+    Route::put('igraci/{id}', [IgracController::class, 'update']);
+    Route::delete('igraci/{id}', [IgracController::class, 'destroy']);
+});
+ 
+//timovi
+use App\Http\Controllers\TimController;
+ 
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('timovi', [TimController::class, 'index']);
+    Route::get('timovi/{id}', [TimController::class, 'show']);
+    Route::post('timovi', [TimController::class, 'store']);
+    Route::put('timovi/{id}', [TimController::class, 'update']);
+    Route::delete('timovi/{id}', [TimController::class, 'destroy']);
+});
+ima kontekstualni meni
