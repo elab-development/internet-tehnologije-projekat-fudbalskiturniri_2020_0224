@@ -1,0 +1,100 @@
+.home_body {
+  background-color: #f4f4f9;
+  color: #333;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100vw;
+}
+
+.form_container {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  width: 90%;
+  max-width: 400px; /* Ensures the container doesn't get too wide */
+  margin: 0 auto;
+}
+
+.proba {
+  margin-bottom: 20px;
+  color: #444444;
+}
+
+.input_container {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input_container input {
+  width: 100%;
+  padding: 10px;
+  padding-left: 40px;
+  border: 2px solid #ddd;
+  background-color: #f7f7f7;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 16px;
+  box-sizing: border-box; /* Ensures padding is included in the width */
+}
+
+.input_container input:focus {
+  outline: none;
+  box-shadow: 0 0 10px #3532cd;
+}
+
+.input_container .icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+}
+
+.submit_btn {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #3532cd;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  box-sizing: border-box; /* Ensures padding is included in the width */
+}
+
+.submit_btn:hover {
+  background-color: #333;
+}
+
+p {
+  margin-top: 20px;
+}
+
+p .link {
+  color: #3532cd;
+  text-decoration: none;
+}
+
+p .link:hover {
+  text-decoration: underline;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: -15px;
+  margin-bottom: 15px;
+}
