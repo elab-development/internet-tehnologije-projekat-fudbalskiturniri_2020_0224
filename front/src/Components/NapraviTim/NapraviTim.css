@@ -1,0 +1,98 @@
+.create-new-team-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  margin-top: 50px;
+}
+
+.create-new-team-container h2 {
+  margin-bottom: 20px;
+}
+
+.input-container {
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.input-container label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.input-container input {
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.player-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.player-row input {
+  margin-right: 10px;
+  flex: 1;
+  padding: 10px 20px;
+  font-size: 15px;
+  width: 150px;
+  background-color: #333;
+  color: white;
+}
+
+.choose-player-btn,
+.new-player-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  background-color: #007bff;
+}
+.new-player-btn {
+  background-color: #28a745;
+  margin-left: 10px;
+}
+.new-player-btn:hover {
+  background-color: #1f8136;
+}
+
+.choose-player-btn:hover {
+  background-color: #0056b3;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px; /* Space between buttons */
+}
+
+.action-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: white;
+}
+
+.create-back-btn {
+  background-color: #6c757d;
+}
+
+.create-back-btn:hover {
+  background-color: #5a6268;
+}
+
+.add-team-btn {
+  background-color: #28a745;
+}
+
+.add-team-btn:hover {
+  background-color: #218838;
+}
