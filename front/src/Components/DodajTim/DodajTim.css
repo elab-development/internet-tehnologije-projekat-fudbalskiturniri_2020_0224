@@ -1,0 +1,120 @@
+/* src/AddTeams.css */
+
+.add-teams-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #ddd;
+  border: 1px solid black;
+}
+
+.add-teams-container h2 {
+  margin-top: 250px;
+
+}
+
+.tournament-info {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 600px;
+  text-align: center; /* Center align text */
+}
+
+.tournament-info p {
+  margin: 5px 0;
+  color: rgb(0, 0, 0);
+}
+
+.logo-container {
+  margin: 10px 0;
+}
+
+.logo-image {
+  width: 100px; /* Size of the logo */
+  height: 100px; /* Size of the logo */
+  object-fit: cover; /* Ensure the image covers the area */
+  border-radius: 5px; /* Optional: rounded corners */
+}
+
+.teams-form {
+  max-height: 500px; /* Adjust as needed */
+  overflow-y: auto; /* Enable vertical scrolling */
+  width: 100%;
+  max-width: 600px;
+}
+
+.team-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.team-input {
+  padding: 10px;
+  border: 1px solid #252525;
+  border-radius: 5px;
+  margin-right: 10px;
+  width: 200px;
+  color: white;
+  background-color: #333;
+}
+
+.choose-team-btn, .create-team-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.choose-team-btn {
+  background-color: #007bff;
+}
+
+.choose-team-btn:hover {
+  background-color: #0056b3;
+}
+
+.create-team-btn {
+  background-color: #28a745;
+}
+
+.create-team-btn:hover {
+  background-color: #218838;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px; /* Space between buttons */
+}
+
+.action-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: white;
+}
+
+.create-back-btn {
+  background-color: #6c757d;
+}
+
+.create-back-btn:hover {
+  background-color: #5a6268;
+}
+
+.create-tournament-btn {
+  background-color: #007bff;
+}
+
+.create-tournament-btn:hover {
+  background-color: #0056b3;
+}
