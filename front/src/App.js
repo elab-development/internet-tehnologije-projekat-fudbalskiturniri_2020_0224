@@ -8,6 +8,7 @@ import GuestLogin from "./Components/Login/GuestLogin";
 import Navigacija from "./Components/Navigation/Navigacija";
 import PrivatnaRuta from "./Components/PrivatnaRuta";
 import Turniri from "./Components/Turniri/Turniri";
+import NapraviTurnir from "./Components/KreiranjeTurnira/NapraviTurnir";
 
 const App = () => {
   return (
@@ -23,6 +24,14 @@ const App = () => {
             element={
               <PrivatnaRuta>
                 <Turniri />
+              </PrivatnaRuta>
+            }
+          />
+          <Route
+            path="/kreiraj-turnir"
+            element={
+              <PrivatnaRuta>
+                <NapraviTurnir />
               </PrivatnaRuta>
             }
           />
