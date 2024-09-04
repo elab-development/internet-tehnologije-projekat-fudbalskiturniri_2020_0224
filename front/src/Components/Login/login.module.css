@@ -45,7 +45,6 @@
   border: 2px solid #ddd;
   background-color: #f7f7f7;
   border-radius: 5px;
-  color: #fff;
   font-size: 16px;
   box-sizing: border-box; /* Ensures padding is included in the width */
 }

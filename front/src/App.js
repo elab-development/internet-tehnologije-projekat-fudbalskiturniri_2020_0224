@@ -7,7 +7,7 @@ import Signup from "./Components/Login/Signup";
 import GuestLogin from "./Components/Login/GuestLogin";
 import Navigacija from "./Components/Navigation/Navigacija";
 import PrivatnaRuta from "./Components/PrivatnaRuta";
-import Tournaments from "./Components/Turniri/Turniri";
+import Turniri from "./Components/Turniri/Turniri";
 
 const App = () => {
   return (
@@ -22,7 +22,7 @@ const App = () => {
             path="/turniri"
             element={
               <PrivatnaRuta>
-                <Tournaments />
+                <Turniri />
               </PrivatnaRuta>
             }
           />

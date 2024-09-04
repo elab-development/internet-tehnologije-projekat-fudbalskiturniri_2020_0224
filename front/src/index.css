@@ -1,13 +1,104 @@
 body {
+  background: linear-gradient(
+    to right,
+    #ece9e6,
+    #ffffff
+  ); /* Use gradient background from tournaments.css */
+  color: #333; /* Match the color from tournaments.css */
+  font-family: "Arial", sans-serif; /* Match the font from*/
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.form-container {
+  background-color: #222;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  width: 90%;
+  max-width: 400px; /* Ensures the container doesn't get too wide */
+  margin: 0 auto;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+.input-container {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 10px;
+  padding-left: 40px;
+  border: none;
+  border-radius: 5px;
+  background-color: #333;
+  color: #fff;
+  font-size: 16px;
+  box-sizing: border-box; /* Ensures padding is included in the width */
+}
+
+.input-container input:focus {
+  outline: none;
+  box-shadow: 0 0 10px #3532cd;
+}
+
+.input-container .icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #3532cd;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  box-sizing: border-box; /* Ensures padding is included in the width */
+}
+
+.submit-btn:hover {
+  background-color: #3532cd;
+}
+
+p {
+  margin-top: 20px;
+}
+
+p .link {
+  color: #3532cd;
+  text-decoration: none;
+}
+
+p .link:hover {
+  text-decoration: underline;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: -15px;
+  margin-bottom: 15px;
 }
