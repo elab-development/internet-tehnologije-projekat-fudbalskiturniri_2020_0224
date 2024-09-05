@@ -41,7 +41,7 @@ const TimModal = ({ isOpen, onClose, onSelectTeam }) => {
         <ul className="team-list">
           {teams.map((team, index) => (
             <li key={index} onClick={() => onSelectTeam(team)}>
-              {team.name}
+              {team.naziv}
             </li>
           ))}
         </ul>

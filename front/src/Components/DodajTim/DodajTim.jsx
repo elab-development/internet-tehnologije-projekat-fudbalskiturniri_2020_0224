@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./DodajTim.css";
-import TimModal from "../TimModal/TimModal";
+import TimModal from "../Modali/TimModal";
 import axios from "axios";
 import Navigacija from "../Navigation/Navigacija";
 
@@ -111,7 +111,7 @@ const DodajTim = () => {
   };
 
   const handleCreateNewTeam = (index) => {
-    navigate("/napravi-nov-tim", {
+    navigate("/napravi-tim", {
       state: {
         rowIndex: index,
         name: tournamentName,
@@ -159,7 +159,7 @@ const DodajTim = () => {
             <input
               type="text"
               placeholder="Ime Tima"
-              value={team.name}
+              value={team.naziv}
               className="team-input"
               disabled
             />

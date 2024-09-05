@@ -36,5 +36,3 @@ class StatistikaUtakmice extends Eloquent
         return $this->belongsTo(Utakmica::class);
     }
 }
- 
-ima kontekstualni meni

@@ -41,7 +41,7 @@ const IgracModal = ({ isOpen, onClose, onSelectPlayer }) => {
         <ul className="player-list">
           {players.map((player, index) => (
             <li key={index} onClick={() => onSelectPlayer(player)}>
-              {player.name} (Broj godina: {player.number})
+              {player.ime + " " + player.prezime} (Pozicija: {player.pozicija})
             </li>
           ))}
         </ul>

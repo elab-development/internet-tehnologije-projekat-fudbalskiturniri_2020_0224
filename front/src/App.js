@@ -9,14 +9,13 @@ import Navigacija from "./Components/Navigation/Navigacija";
 import PrivatnaRuta from "./Components/PrivatnaRuta";
 import Turniri from "./Components/Turniri/Turniri";
 import NapraviTurnir from "./Components/KreiranjeTurnira/NapraviTurnir";
-import DodajTim from "./Components/DodavanjeTimova/DodajTim";
-import NapraviTim from "./Components/Kreiranje timova/NapraviTim";
+import DodajTim from "./Components/DodajTim/DodajTim";
+import NapraviTim from "./Components/NapraviTim/NapraviTim";
 
 const App = () => {
   return (
     <Router>
       <div className="App">
-        <Navigacija />
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
@@ -30,27 +29,27 @@ const App = () => {
             }
           />
           <Route
-            path="/kreiraj-turnir"
+            path="/napravi-turnir"
             element={
               <PrivatnaRuta>
                 <NapraviTurnir />
               </PrivatnaRuta>
             }
           />
-           <Route
+          <Route
             path="/dodaj-tim"
             element={
-              <PrivateRoute>
+              <PrivatnaRuta>
                 <DodajTim />
-              </PrivateRoute>
+              </PrivatnaRuta>
             }
           />
           <Route
             path="/napravi-tim"
             element={
-              <PrivateRoute>
+              <PrivatnaRuta>
                 <NapraviTim />
-              </PrivateRoute>
+              </PrivatnaRuta>
             }
           />
         </Routes>

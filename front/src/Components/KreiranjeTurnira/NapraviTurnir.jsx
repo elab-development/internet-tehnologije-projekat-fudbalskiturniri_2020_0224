@@ -40,7 +40,7 @@ const NapraviTurnir = () => {
       );
       return;
     }
-    navigate("/dodaj-timove", {
+    navigate("/dodaj-tim", {
       state: {
         name,
         place,
