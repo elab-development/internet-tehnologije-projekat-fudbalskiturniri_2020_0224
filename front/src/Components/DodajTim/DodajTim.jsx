@@ -13,8 +13,8 @@ const DodajTim = () => {
   const [teams, setTeams] = useState(() => {
     const initialTeams = Array(location.state?.numTeams || 4).fill({
       id: null,
-      name: "",
-      players: [],
+      naziv: "",
+      igraci: [],
     });
     if (location.state?.existingTeams) {
       location.state.existingTeams.forEach((team, index) => {
@@ -25,10 +25,10 @@ const DodajTim = () => {
   });
 
   const [tournamentName, setTournamentName] = useState(
-    location.state?.name || "Unknown Tournament"
+    location.state?.naziv || "Unknown Tournament"
   );
   const [placeOfPlaying, setPlaceOfPlaying] = useState(
-    location.state?.place || "Unknown Place"
+    location.state?.mesto_odrzavanja || "Unknown Place"
   );
   const [logo, setLogo] = useState(location.state?.logo || "");
 
@@ -43,15 +43,16 @@ const DodajTim = () => {
       const updatedTeams = [...teams];
       updatedTeams[location.state.rowIndex] = location.state.newTeam;
       setTeams(updatedTeams);
+      console.log(updatedTeams);
     }
   }, [location.state?.newTeam, location.state?.rowIndex]);
 
   const handleBackClick = () => {
     navigate("/napravi-turnir", {
       state: {
-        name: tournamentName,
-        place: placeOfPlaying,
-        numTeams: teams.length,
+        naziv: tournamentName,
+        mesto_odrzavanja: placeOfPlaying,
+        broj_ekipa: teams.length,
         existingTeams: teams,
         logo,
       },
@@ -59,7 +60,7 @@ const DodajTim = () => {
   };
 
   const handleCreateTournament = async () => {
-    if (teams.some((team) => !team.name || team.players.length < 5)) {
+    if (teams.some((team) => !team.naziv || team.igraci.length < 5)) {
       alert(
         "Ubacite sve timove i dodajte 5 igrača pre nego što kreirate turnir."
       );
@@ -69,24 +70,24 @@ const DodajTim = () => {
     // Check for duplicate teams
     const teamNames = new Set();
     for (const team of teams) {
-      if (teamNames.has(team.name)) {
+      if (teamNames.has(team.naziv)) {
         alert(
           "Postoje timovi sa istim imenom. Molimo vas da ih uklonite pre nego što kreirate turnir."
         );
         return;
       }
-      teamNames.add(team.name);
+      teamNames.add(team.naziv);
     }
 
     try {
       const response = await axios.post(
         "http://127.0.0.1:8000/api/turniri",
         {
-          name: tournamentName,
-          place: placeOfPlaying,
+          naziv: tournamentName,
+          mesto_odrzavanja: placeOfPlaying,
           logo: logo,
-          numTeams: teams.length,
-          teams: teams,
+          broj_ekipa: teams.length,
+          timovi: teams,
         },
         {
           headers: {
@@ -114,8 +115,8 @@ const DodajTim = () => {
     navigate("/napravi-tim", {
       state: {
         rowIndex: index,
-        name: tournamentName,
-        place: placeOfPlaying,
+        naziv: tournamentName,
+        mesto_odrzavanja: placeOfPlaying,
         existingTeams: teams,
         logo,
         role,

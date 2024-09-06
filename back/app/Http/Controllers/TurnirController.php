@@ -30,19 +30,19 @@ class TurnirController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string',
-            'place' => 'required|string',
+            'naziv' => 'required|string',
+            'mesto_odrzavanja' => 'required|string',
             'logo' => 'nullable|string',
-            'teams' => 'required|array',
-            'teams.*.name' => 'required|string',
-            'teams.*.place' => 'required|string',
-            'teams.*.id' => 'nullable|string',
-            'numTeams' => 'required|integer',
-            'teams.*.players' => 'required|array',
-            'teams.*.players.*.name' => 'required|string',
-            'teams.*.players.*.surname' => 'required|string',
-            'teams.*.players.*.pozicija' => 'required|string|in:Branič,Vezni,Napadač',
-            'teams.*.players.*.id' => 'nullable|string',
+            'timovi' => 'required|array',
+            'timovi.*.naziv' => 'required|string',
+            'timovi.*.mesto' => 'required|string',
+            'timovi.*.id' => 'nullable|string',
+            'broj_ekipa' => 'required|integer',
+            'timovi.*.igraci' => 'required|array',
+            'timovi.*.igraci.*.ime' => 'required|string',
+            'timovi.*.igraci.*.prezime' => 'required|string',
+            'timovi.*.igraci.*.pozicija' => 'required|string|in:Branič,Vezni,Napadač',
+            'timovi.*.igraci.*.id' => 'nullable|string',
         ]);
 
         $client = DB::connection('mongodb')->getMongoClient();
@@ -51,21 +51,21 @@ class TurnirController extends Controller
 
         try {
             $tournament = Turnir::create([
-                'ime' => $validated['name'],
-                'mesto' => $validated['place'],
+                'naziv' => $validated['naziv'],
+                'mesto_odrzavanja' => $validated['mesto_odrzavanja'],
                 'logo' => $validated['logo'],
-                'broj_timova' => $validated['numTeams'],
+                'broj_ekipa' => $validated['broj_ekipa'],
             ]);
 
             $teams = [];
-            foreach ($validated['teams'] as $teamData) {
+            foreach ($validated['timovi'] as $teamData) {
                 if (is_null($teamData['id'])) {
                     $team = Tim::create([
-                        'ime' => $teamData['name'],
-                        'mesto' => $teamData['place'],
+                        'naziv' => $teamData['naziv'],
+                        'mesto' => $teamData['mesto'],
                     ]);
 
-                    $tournament->teams()->save($team);
+                    $tournament->timovi()->save($team);
                 } else {
                     $team = Tim::find($teamData['id']);
                     if (!$team) {
@@ -73,30 +73,30 @@ class TurnirController extends Controller
                         return response()->json(['success' => false, 'message' => 'Team not found'], 404);
                     }
 
-                    $tournament->teams()->save($team);
+                    $tournament->timovi()->save($team);
                 }
 
-                foreach ($teamData['players'] as $playerData) {
+                foreach ($teamData['igraci'] as $playerData) {
                     if (is_null($playerData['id'])) {
                         $player = new Igrac();
-                        $player->ime = $playerData['name'];
-                        $player->prezime = $playerData['surname'];
+                        $player->ime = $playerData['ime'];
+                        $player->prezime = $playerData['prezime'];
                         $player->pozicija = $playerData['pozicija'];
 
 
-                        $team->players()->save($player);
+                        $team->igraci()->save($player);
 
 
                     } else {
                         $player = Igrac::find($playerData['id']);
-                        $existingStats = $player->stats_player;
+                        $existingStats = $player->statistika_igraca;
 
 
                         if (!$player) {
                             $session->abortTransaction();
                             return response()->json(['success' => false, 'message' => 'Player not found'], 404);
                         }
-                        $team->players()->save($player);
+                        $team->igraci()->save($player);
 
                     }
                 }
@@ -105,7 +105,7 @@ class TurnirController extends Controller
             }
 
 
-            $numGames = $validated['numTeams'] - 1;
+            $numGames = $validated['broj_ekipa'] - 1;
             $brojUtakmice = $numGames;
 
             while (count($teams) > 1) {
@@ -113,7 +113,7 @@ class TurnirController extends Controller
                 $domaci = array_splice($teams, array_rand($teams), 1)[0];
                 $gostujuci = array_splice($teams, array_rand($teams), 1)[0];
 
-                $game = Igrac::create([
+                $game = Utakmica::create([
                     'broj_utakmice' => $brojUtakmice,
                     'status'=>'not_started',
                     'golovi_domaci_tim' => 0,
@@ -136,11 +136,11 @@ class TurnirController extends Controller
                     'posed_lopte_domacina'=>50,
                     'posed_lopte_gosta'=>50
                 ]);
-                $game->stats_game()->save($gameStats);
+                $game->statistika_utakmice()->save($gameStats);
 
 
                 foreach ([$domaci, $gostujuci] as $team) {
-                    foreach ($team->players as $player) {
+                    foreach ($team->igraci as $player) {
                         $playerStats = StatistikaIgraca::create([
                             'golovi' => 0,
                             'asistencije' => 0,
@@ -153,14 +153,14 @@ class TurnirController extends Controller
                             'utakmica_id' => $game->_id 
                         ]);
 
-                        $player->stats_player()->save($playerStats);
+                        $player->statistika_igraca()->save($playerStats);
                     }
                 }
 
 
-                $game->team1()->associate($domaci);
-                $game->team2()->associate($gostujuci);
-                $game->tournament()->associate($tournament);
+                $game->domaci_tim()->associate($domaci);
+                $game->gostujuci_tim()->associate($gostujuci);
+                $game->turnir()->associate($tournament);
                 $game->save();
                 $brojUtakmice--;
             }
@@ -190,9 +190,9 @@ class TurnirController extends Controller
                     'posed_lopte_domacina'=>50,
                     'posed_lopte_gosta'=>50
                 ]);
-                $game->stats_game()->save($gameStats);
+                $game->statistika_utakmice()->save($gameStats);
 
-                $game->tournament()->associate($tournament);
+                $game->turnir()->associate($tournament);
                 $game->save();
 
                 $brojUtakmice--;
@@ -214,6 +214,7 @@ class TurnirController extends Controller
     {
         try{
             $turnir = Turnir::findOrFail($id);
+            return new TurnirResource($tournament);
             return response()->json($turnir, 200);
         }
         catch (\Exception $e) {

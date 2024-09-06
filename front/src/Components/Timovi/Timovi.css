@@ -1,0 +1,51 @@
+body{
+  height: 100%;
+  
+}
+
+
+.teams-container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    padding-top: 70px; /* Adjust top padding to account for fixed navigation */
+  }
+  .teams-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .team-card {
+    border: 1px solid #dddddd;
+    background-color: #FEFEFA;
+    border-radius: 8px;
+    padding: 10px;
+    width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  .team-card:hover {
+    transform: translateY(-5px); /* Lift up on hover */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+    cursor: pointer;
+  }
+
+  .players-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+  }
+  
+  .players-list li {
+    margin-bottom: 5px;
+  }
+  h3 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    margin-top: 0;
+  }
+  h1{
+    color:black;
+  }

@@ -42,9 +42,9 @@ const NapraviTurnir = () => {
     }
     navigate("/dodaj-tim", {
       state: {
-        name,
-        place,
-        numTeams: parseInt(teams, 10),
+        naziv: name,
+        mesto_odrzavanja: place,
+        broj_ekipa: parseInt(teams, 10),
         logo,
         role,
       },

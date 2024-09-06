@@ -11,7 +11,7 @@ const NapraviTim = () => {
   const [teamName, setTeamName] = useState("");
   const [teamPlace, setTeamPlace] = useState("");
   const [players, setPlayers] = useState(
-    Array(5).fill({ id: null, name: "", surname: "", pozicija: "" })
+    Array(5).fill({ id: null, ime: "", prezime: "", pozicija: "" })
   );
   const [isIgracModalOpen, setIsIgracModalOpen] = useState(false);
   const [selectedPlayerIndex, setSelectedPlayerIndex] = useState(null);
@@ -32,18 +32,18 @@ const NapraviTim = () => {
       return;
     }
 
-    if (players.every((player) => player.name && player.surname)) {
+    if (players.every((player) => player.ime && player.prezime)) {
       navigate("/dodaj-tim", {
         state: {
           newTeam: {
             id: null,
-            name: teamName,
-            place: teamPlace,
-            players: players,
+            naziv: teamName,
+            mesto: teamPlace,
+            igraci: players,
           },
           rowIndex: location.state.rowIndex,
-          name: location.state.name,
-          place: location.state.place,
+          naziv: location.state.naziv,
+          mesto_odrzavanja: location.state.mesto_odrzavanja,
           existingTeams: location.state.existingTeams,
           logo: location.state.logo,
         },
@@ -56,8 +56,8 @@ const NapraviTim = () => {
   const handleBackClick = () => {
     navigate("/dodaj-tim", {
       state: {
-        name: location.state.name,
-        place: location.state.place,
+        naziv: location.state.naziv,
+        mesto_odrzavanja: location.state.mesto_odrzavanja,
         existingTeams: location.state.existingTeams,
         logo: location.state.logo,
       },
@@ -69,7 +69,7 @@ const NapraviTim = () => {
     updatedEditMode[index] = true;
 
     const updatePlayers = [...players];
-    updatePlayers[index] = { id: null, name: "", surname: "", pozicija: "" };
+    updatePlayers[index] = { id: null, ime: "", prezime: "", pozicija: "" };
 
     setEditMode(updatedEditMode);
     setPlayers(updatePlayers);
@@ -128,8 +128,8 @@ const NapraviTim = () => {
           <div key={index} className="player-row">
             <input
               type="text"
-              name="name"
-              value={player.name}
+              name="ime"
+              value={player.ime}
               onChange={(e) => handlePlayerChange(index, e)}
               placeholder="Ime Igrača"
               required
@@ -138,8 +138,8 @@ const NapraviTim = () => {
             />
             <input
               type="text"
-              name="surname"
-              value={player.surname}
+              name="prezime"
+              value={player.prezime}
               onChange={(e) => handlePlayerChange(index, e)}
               placeholder="Prezime Igrača"
               required

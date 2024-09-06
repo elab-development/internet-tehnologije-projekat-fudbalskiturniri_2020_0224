@@ -5,12 +5,12 @@ import "./index.css";
 import Login from "./Components/Login/Login";
 import Signup from "./Components/Login/Signup";
 import GuestLogin from "./Components/Login/GuestLogin";
-import Navigacija from "./Components/Navigation/Navigacija";
 import PrivatnaRuta from "./Components/PrivatnaRuta";
 import Turniri from "./Components/Turniri/Turniri";
 import NapraviTurnir from "./Components/KreiranjeTurnira/NapraviTurnir";
 import DodajTim from "./Components/DodajTim/DodajTim";
 import NapraviTim from "./Components/NapraviTim/NapraviTim";
+import Timovi from "./Components/Timovi/Timovi";
 
 const App = () => {
   return (
@@ -49,6 +49,14 @@ const App = () => {
             element={
               <PrivatnaRuta>
                 <NapraviTim />
+              </PrivatnaRuta>
+            }
+          />
+          <Route
+            path="/timovi"
+            element={
+              <PrivatnaRuta>
+                <Timovi />
               </PrivatnaRuta>
             }
           />
