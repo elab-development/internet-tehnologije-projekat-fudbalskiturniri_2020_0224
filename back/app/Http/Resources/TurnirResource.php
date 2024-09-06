@@ -16,7 +16,7 @@ class TurnirResource extends JsonResource
     {
 
         $user = Auth::user();
-        $omiljeni = $user->tournaments()->where('_id',$this->id)->exists();
+        $omiljeni = $user->turniri()->where('_id',$this->id)->exists();
 
         return [
             'id' => $this->id,

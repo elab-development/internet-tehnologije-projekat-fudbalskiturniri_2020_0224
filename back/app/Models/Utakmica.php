@@ -21,7 +21,7 @@ class Utakmica extends Eloquent
         'golovi_gostujuci_tim',
         'domaci_tim',
         'gostujuci_tim',
-        'pobednik',
+        'pobednik_id',
         'turnir_id',
         'status',
         'broj_utakmice'
@@ -44,18 +44,18 @@ class Utakmica extends Eloquent
         return $this->belongsTo(Turnir::class);
     }
 
-    public function domaci_tim():BelongsTo
+    public function domaci():BelongsTo
     {
         return $this->belongsTo(Tim::class, 'domaci_tim');
     }
 
-    public function gostujuci_tim():BelongsTo
+    public function gostujuci():BelongsTo
     {
         return $this->belongsTo(Tim::class, 'gostujuci_tim');
     }
 
     public function pobednik():BelongsTo
     {
-        return $this->belongsTo(Tim::class, 'pobednik');
+        return $this->belongsTo(Tim::class, 'pobednik_id');
     }
 }

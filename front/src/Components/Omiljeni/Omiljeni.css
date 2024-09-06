@@ -1,0 +1,127 @@
+/* src/Tournaments.css */
+
+body {
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.tournaments-container {
+  padding: 20px;
+  padding-top: 70px; /* Adjust top padding to account for fixed navigation */
+}
+
+/* Navigation bar styling */
+.navigation {
+  background-color: #333; 
+  padding: 10px 20px;
+  border-bottom: 1px solid #444;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000; /* Ensure the navigation bar is above other content */
+  display: flex;
+  justify-content: space-between; /* Space between nav items and logout button */
+  align-items: center; /* Center items vertically */
+  color: #fff;
+}
+
+.navigation ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 20px;
+}
+
+.navigation li {
+  display: inline;
+}
+
+.navigation a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+.navigation a:hover {
+  color: #ddd;
+}
+
+/* Logout button styling */
+.logout-btn {
+  background-color: #dc3545;
+  color: white;
+  margin-right: 30px;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: #811620;
+}
+
+.tournaments-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;  
+}
+
+.tournament-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  max-width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.tournament-logo {
+  width: 100px; /* Adjust the width of the image as needed */
+  height: auto; /* Automatically adjust the height to maintain proportions */
+  margin-bottom: 10px;
+}
+/* Additional styling for buttons, headers, and text */
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.button:hover {
+  background-color: #218838;
+}
+
+.favorite-star {
+  font-size: 24px;
+  cursor: pointer;
+  color: gray;
+  margin-top: 10px;
+}
+
+.favorite-star.favorite {
+  color: gold;
+}

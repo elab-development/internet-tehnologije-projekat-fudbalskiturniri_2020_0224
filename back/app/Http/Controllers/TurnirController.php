@@ -13,6 +13,7 @@ use App\Models\Tim;
 use App\Models\Igrac;
 use MongoDB\Client;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;  
  
  
 class TurnirController extends Controller
@@ -120,7 +121,7 @@ class TurnirController extends Controller
                     'golovi_gostujuci_tim' => 0,
                     'domaci_tim' => $domaci->_id, 
                     'gostujuci_tim' => $gostujuci->_id, 
-                    'pobednik' => null, 
+                    'pobednik_id' => null, 
                     'turnir_id' => $tournament->_id 
                 ]);
 
@@ -158,8 +159,8 @@ class TurnirController extends Controller
                 }
 
 
-                $game->domaci_tim()->associate($domaci);
-                $game->gostujuci_tim()->associate($gostujuci);
+                $game->domaci()->associate($domaci);
+                $game->gostujuci()->associate($gostujuci);
                 $game->turnir()->associate($tournament);
                 $game->save();
                 $brojUtakmice--;
@@ -174,7 +175,7 @@ class TurnirController extends Controller
                     'golovi_gostujuci_tim' => 0,
                     'domaci_tim' => null, 
                     'gostujuci_tim' => null,
-                    'pobednik' => null, 
+                    'pobednik_id' => null, 
                     'turnir_id' => $tournament->_id
                 ]);
 
@@ -214,7 +215,7 @@ class TurnirController extends Controller
     {
         try{
             $turnir = Turnir::findOrFail($id);
-            return new TurnirResource($tournament);
+            return new ($tournament);
             return response()->json($turnir, 200);
         }
         catch (\Exception $e) {
@@ -248,7 +249,48 @@ class TurnirController extends Controller
         }
     }
  
-  
+    public function addToFavorite(Request $request,$id){
+        try{
+            $user = Auth::user();
+            $tournament = Turnir::findOrFail($id);
+            $user->turniri()->save($tournament);
+            return response()->json(['success' => true, 'message' => 'Uspesno dodat turnir u omiljene: ' ], 200);
+        }
+        catch (\Exception $e) {
+            \Log::error($e->getMessage());
+            return response()->json(['success' => false,'message' => 'Nije uspesno dodat turnir u omiljene'], 500);
+        }
+
+
+    }
+
+    public function removeFromFavorites(Request $request,$id){
+
+        try{
+            $user = Auth::user();
+            $tournament = Turnir::findOrFail($id);
+            $user->turniri()->detach($tournament->_id);
+            $tournament->users()->detach($user->_id);
+
+            return response()->json(['success' => true, 'message' => 'Uspesno uklonjen turnir iz omiljenih: ' ], 200);
+        }
+        catch (\Exception $e) {
+            \Log::error($e->getMessage());
+            return response()->json(['success' => false,'message' => 'Nije uspesno uklonjen turnir iz omiljenih'], 500);
+        }
+
+    }
+
+    public function getFavorites(Request $request){
+        try{
+            $user = Auth::user();
+            return TurnirResource::collection($user->turniri);
+        }
+        catch (\Exception $e) {
+            \Log::error($e->getMessage());
+            return response()->json(['success' => false, 'message' => 'Ne mogu da se vrate turniri: ' . $e->getMessage()], 500);
+        }
+    }
  
   
 }

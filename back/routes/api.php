@@ -74,10 +74,13 @@ use App\Http\Controllers\TurnirController;
 //turniri
  
 Route::middleware('auth:sanctum')->group(function () {
+    Route::get('turniri/omiljeni', [TurnirController::class, 'getFavorites']);
     Route::apiResource('turniri', TurnirController::class)->only([
         'index', 'show'
     ]);
 
+    Route::post('turniri/omiljeni/{id}', [TurnirController::class, 'addToFavorite']);
+    Route::delete('turniri/omiljeni/{id}', [TurnirController::class, 'removeFromFavorites']);
 
     Route::middleware('role:admin')->group(function () {
         Route::apiResource('turniri', TurnirController::class)->only([

@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-import "./Turniri.css";
+import "./Omiljeni.css";
 import Navigacija from "../Navigation/Navigacija";
-const Turniri = () => {
+
+const Omiljeni = () => {
   const [tournaments, setTournaments] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
-  const { role } = location.state || {}; // Get role from state
+  const { role } = location.state || {};
 
   useEffect(() => {
     const fetchTournaments = async () => {
@@ -15,7 +16,7 @@ const Turniri = () => {
         const config = {
           method: "get",
           maxBodyLength: Infinity,
-          url: "http://localhost:8000/api/turniri",
+          url: "http://localhost:8000/api/turniri/omiljeni",
           headers: {
             Authorization:
               "Bearer " + window.sessionStorage.getItem("auth_token"),
@@ -44,48 +45,45 @@ const Turniri = () => {
       };
       await axios.request(config);
 
-      // Update the state to reflect the change
       setTournaments((prevTournaments) =>
-        prevTournaments.map((turnir) =>
-          turnir.id === id ? { ...turnir, isFavorite: !isFavorite } : turnir
-        )
+        prevTournaments.filter((tournament) => tournament.id !== id)
       );
     } catch (error) {
       console.error("There was an error updating the favorite status!", error);
     }
   };
 
-  const handleTournamentClick = (turnir) => {
-    console.log(turnir);
-    navigate(`/matches/${turnir.id}`, { state: { role } });
+  const handleTournamentClick = (tournament) => {
+    console.log(tournament);
+    navigate(`/utakmice/${tournament.id}`, { state: { role } });
   };
 
   return (
     <div className="tournaments-container">
       <Navigacija role={role} />
-      <h2>Svi Turniri</h2>
+      <h2>Moji omiljeni turniri</h2>
       <div className="tournaments-list">
-        {tournaments.map((turnir) => (
+        {tournaments.map((tournament) => (
           <div
-            key={turnir.id}
+            key={tournament.id}
             className="tournament-card"
-            onClick={() => handleTournamentClick(turnir)}
+            onClick={() => handleTournamentClick(tournament)}
           >
             <img
-              src={turnir.logo}
-              alt={turnir.naziv}
+              src={tournament.logo}
+              alt={tournament.naziv}
               className="tournament-logo"
             />
-            <h3>{turnir.naziv}</h3>
-            <p>Lokacija: {turnir.mesto_odrzavanja}</p>
-            <p>Broj Timova: {turnir.broj_ekipa}</p>
+            <h3>{tournament.naziv}</h3>
+            <p>Lokacija: {tournament.mesto_odrzavanja}</p>
+            <p>Broj Timova: {tournament.timovi}</p>
             {role === "user" && (
               <span
                 className={`favorite-star ${
-                  turnir.isFavorite ? "favorite" : ""
+                  tournament.omiljeni ? "favorite" : ""
                 }`}
                 onClick={(event) =>
-                  handleFavoriteClick(turnir.id, turnir.isFavorite, event)
+                  handleFavoriteClick(tournament.id, tournament.omiljeni, event)
                 }
               >
                 &#9733;
@@ -98,4 +96,4 @@ const Turniri = () => {
   );
 };
 
-export default Turniri;
+export default Omiljeni;

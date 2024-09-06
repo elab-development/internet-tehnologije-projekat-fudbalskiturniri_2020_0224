@@ -12,6 +12,7 @@ import DodajTim from "./Components/DodajTim/DodajTim";
 import NapraviTim from "./Components/NapraviTim/NapraviTim";
 import Timovi from "./Components/Timovi/Timovi";
 import Igraci from "./Components/Igraci/Igraci";
+import Omiljeni from "./Components/Omiljeni/Omiljeni";
 
 const App = () => {
   return (
@@ -66,6 +67,14 @@ const App = () => {
             element={
               <PrivatnaRuta>
                 <Igraci />
+              </PrivatnaRuta>
+            }
+          />
+          <Route
+            path="/omiljeni"
+            element={
+              <PrivatnaRuta>
+                <Omiljeni />
               </PrivatnaRuta>
             }
           />
