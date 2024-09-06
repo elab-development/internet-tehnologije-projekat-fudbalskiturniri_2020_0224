@@ -11,6 +11,7 @@ import NapraviTurnir from "./Components/KreiranjeTurnira/NapraviTurnir";
 import DodajTim from "./Components/DodajTim/DodajTim";
 import NapraviTim from "./Components/NapraviTim/NapraviTim";
 import Timovi from "./Components/Timovi/Timovi";
+import Igraci from "./Components/Igraci/Igraci";
 
 const App = () => {
   return (
@@ -57,6 +58,14 @@ const App = () => {
             element={
               <PrivatnaRuta>
                 <Timovi />
+              </PrivatnaRuta>
+            }
+          />
+          <Route
+            path="/igraci"
+            element={
+              <PrivatnaRuta>
+                <Igraci />
               </PrivatnaRuta>
             }
           />

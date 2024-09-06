@@ -28,11 +28,15 @@ use App\Http\Controllers\IgracController;
 //igraci
  
 Route::middleware('auth:sanctum')->group(function () {
+    Route::get('igraci/kumulativna_statistika', [IgracController::class, 'getAllPlayersWithAllStatistics']);
     Route::get('igraci', [IgracController::class, 'index']);
     Route::get('igraci/{id}', [IgracController::class, 'show']);
-    Route::post('igraci', [IgracController::class, 'store']);
-    Route::put('igraci/{id}', [IgracController::class, 'update']);
-    Route::delete('igraci/{id}', [IgracController::class, 'destroy']);
+
+    Route::middleware('role:admin')->group(function () {
+        Route::post('igraci', [IgracController::class, 'store']);
+        Route::put('igraci/{id}', [IgracController::class, 'update']);
+        Route::delete('igraci/{id}', [IgracController::class, 'destroy']);
+    });
 });
  
 //timovi
@@ -41,9 +45,12 @@ use App\Http\Controllers\TimController;
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('timovi', [TimController::class, 'index']);
     Route::get('timovi/{id}', [TimController::class, 'show']);
-    Route::post('timovi', [TimController::class, 'store']);
-    Route::put('timovi/{id}', [TimController::class, 'update']);
-    Route::delete('timovi/{id}', [TimController::class, 'destroy']);
+
+    Route::middleware('role:admin')->group(function () {
+        Route::post('timovi', [TimController::class, 'store']);
+        Route::put('timovi/{id}', [TimController::class, 'update']);
+        Route::delete('timovi/{id}', [TimController::class, 'destroy']);
+    });
 });
 
 use App\Http\Controllers\UtakmicaController;
@@ -53,9 +60,13 @@ use App\Http\Controllers\UtakmicaController;
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('utakmice', [UtakmicaController::class, 'index']);
     Route::get('utakmice/{id}', [UtakmicaController::class, 'show']);
-    Route::post('utakmice', [UtakmicaController::class, 'store']);
-    Route::put('utakmice/{id}', [UtakmicaController::class, 'update']);
-    Route::delete('utakmice/{id}', [UtakmicaController::class, 'destroy']);
+
+
+    Route::middleware('role:admin')->group(function () {   
+        Route::post('utakmice', [UtakmicaController::class, 'store']);
+        Route::put('utakmice/{id}', [UtakmicaController::class, 'update']);
+        Route::delete('utakmice/{id}', [UtakmicaController::class, 'destroy']);
+    });
 });
  
 use App\Http\Controllers\TurnirController;
@@ -63,5 +74,14 @@ use App\Http\Controllers\TurnirController;
 //turniri
  
 Route::middleware('auth:sanctum')->group(function () {
-    Route::apiResource('turniri', TurnirController::class);
+    Route::apiResource('turniri', TurnirController::class)->only([
+        'index', 'show'
+    ]);
+
+
+    Route::middleware('role:admin')->group(function () {
+        Route::apiResource('turniri', TurnirController::class)->only([
+            'store', 'update', 'destroy'
+        ]);
+    });
 });

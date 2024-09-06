@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Igrac;
 use Illuminate\Http\Request;
 use App\Http\Resources\IgracResource;
+use Illuminate\Support\Facades\Log;
 class IgracController extends Controller
 {
     public function index()
@@ -68,6 +69,39 @@ class IgracController extends Controller
         }
     }
  
-   
+    public function getAllPlayersWithAllStatistics(Request $request)
+    {
+        try {
+    
+            $perPage = $request->input('perPage', 20);
+    
+    
+            $igraci = Igrac::paginate($perPage);
+    
+    
+            foreach ($igraci as $igrac) {
+                $statistika = $igrac->statistika_igraca;
+    
+                $kumulativna_statistika = [
+                    'golovi' => $statistika->sum('golovi'),
+                    'asistencije' => $statistika->sum('asistencije'),
+                    'faulovi' => $statistika->sum('faulovi'),
+                    'zuti_kartoni' => $statistika->sum('zuti_kartoni'),
+                    'crveni_kartoni' => $statistika->sum('crveni_kartoni'),
+                    'sutevi_u_gol' => $statistika->sum('sutevi_u_gol'),
+                    'sutevi_van_gola' => $statistika->sum('sutevi_van_gola'),
+                ];
+    
+    
+                $igrac->kumulativna_statistika = $kumulativna_statistika;
+            }
+    
+    
+            return IgracResource::collection($igraci);
+        } catch (\Exception $e) {
+            \Log::error($e->getMessage());
+            return response()->json(['error' => 'Greska u citanju podataka'], 500);
+        }
+    }
  
 }

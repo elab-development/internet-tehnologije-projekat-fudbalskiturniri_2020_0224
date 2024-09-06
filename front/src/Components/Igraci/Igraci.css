@@ -1,0 +1,38 @@
+body{
+  height: 100%;
+}
+
+.players-container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    padding-top: 70px; /* Adjust top padding to account for fixed navigation */
+  }
+  h1 {
+    color: rgb(0, 0, 0);
+    text-align: center;
+  }
+  
+  .players-list-2 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .player-card {
+    border: 1px solid #ddd;
+    background-color: #FEFEFA;
+    border-radius: 8px;
+    padding: 10px;
+    width: 200px;
+  }
+
+  .player-card:hover {
+    transform: translateY(-5px); /* Lift up on hover */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+    cursor: pointer;
+  }
+  
+  .player-stats {
+    margin-top: 10px;
+  }
+  
