@@ -1,0 +1,126 @@
+.bracket-container {
+  display: flex;
+  height: auto;
+  width: 100vw;
+  text-align: center;
+
+
+}
+
+.bracket-content{
+  flex-grow: 1;
+  padding: 30px;
+  margin-top: 60px;
+  gap:60px;
+  margin-left: 250px;
+  
+}
+
+.tournament-title {
+  margin-top: 50px;
+  text-align: center;
+  font-size: 2.5rem;      /* Veći font za naslov */
+  font-weight: 700;
+  color: #007bff;
+  letter-spacing: 1.2px;
+}
+
+.bracket-match {
+  display: flex;
+  justify-content: center;
+  gap:50px;
+  width: 100%;
+}
+
+.bracket-column {
+  padding: 20px;
+  border-radius: 16px;  
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  width: 280px;
+  background-color: #FEFEFA;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bracket-column:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.phase-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  font-weight: 600; 
+  color: #444;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.bracket-card {
+  padding: 20px;            /* Povećana margina */
+  border: 1px solid #d1d1e0; /* Svetlija nijansa granice */
+  border-radius: 12px;      
+  background-color: #cfcfcf;
+  font-weight: 500; 
+  color: #000000;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.bracket-card:hover {
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Osmina finala */
+.osmina-finala {
+  gap: 40px;
+}
+
+.osmina-finala .bracket-card {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* Četvrtfinale */
+.cetvrtfinale {
+  gap: 60px;
+}
+
+.cetvrtfinale .bracket-card {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.cetvrtfinale .bracket-card:nth-of-type(1) {
+  margin-top: -20px;
+}
+
+/* Polufinale */
+.polufinale {
+  gap: 160px;
+}
+
+.polufinale .bracket-card {
+  padding-top: 35px;
+  padding-bottom: 35px;
+}
+
+.polufinale .bracket-card:nth-of-type(1) {
+  margin-top: -70px;
+}
+
+/* Finale */
+.finale {
+  gap: 190px;
+}
+
+.finale .bracket-card {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  font-size: 1.5rem;       /* Povećan font */
+  font-weight: 700;        /* Podebljan font */
+  
+}
