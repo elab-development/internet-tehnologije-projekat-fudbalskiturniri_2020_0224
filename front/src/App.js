@@ -13,6 +13,7 @@ import NapraviTim from "./Components/NapraviTim/NapraviTim";
 import Timovi from "./Components/Timovi/Timovi";
 import Igraci from "./Components/Igraci/Igraci";
 import Omiljeni from "./Components/Omiljeni/Omiljeni";
+import Utakmica from "./Components/Utakmica/Utakmica";
 
 const App = () => {
   return (
@@ -62,6 +63,24 @@ const App = () => {
               </PrivatnaRuta>
             }
           />
+          
+        <Route
+            path="/utakmice/:id"
+            element={
+              <PrivatnaRuta>
+                <Utakmica />
+              </PrivatnaRuta>
+            }
+          />
+          <Route
+            path="/bracket/:id"
+            element={
+              <PrivatnaRuta>
+                <Bracket />
+              </PrivatnaRuta>
+            }
+          />
+
           <Route
             path="/igraci"
             element={

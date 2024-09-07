@@ -57,7 +57,7 @@ const Turniri = () => {
 
   const handleTournamentClick = (turnir) => {
     console.log(turnir);
-    navigate(`/matches/${turnir.id}`, { state: { role } });
+    navigate(`/utakmice/${turnir.id}`, { state: { role } });
   };
 
   return (

@@ -63,6 +63,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
     Route::middleware('role:admin')->group(function () {   
+        Route::put('utakmice/status/{id}', [UtakmicaController::class, 'updateStatus']);
+        Route::put('utakmice/finish/{id}', [UtakmicaController::class, 'updateWinner']);
         Route::post('utakmice', [UtakmicaController::class, 'store']);
         Route::put('utakmice/{id}', [UtakmicaController::class, 'update']);
         Route::delete('utakmice/{id}', [UtakmicaController::class, 'destroy']);
