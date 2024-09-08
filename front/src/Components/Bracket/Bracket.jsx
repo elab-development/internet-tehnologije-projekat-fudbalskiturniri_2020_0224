@@ -77,7 +77,8 @@ const Bracket = () => {
 
   useEffect(() => {
     if (tournament) {
-      setMatches(tournament.utakmica);
+      setMatches(tournament.utakmice);
+      console.log(tournament.utakmice);
     }
   }, [tournament]);
 
@@ -92,9 +93,9 @@ const Bracket = () => {
   const generateStages = (matches) => {
     const stages = {
       "Osmina-finala": [],
-      Cetvrtfinale: [],
-      Polufinale: [],
-      Finale: [],
+      "Cetvrt-finale": [],
+      "Polu-finale": [],
+      "Finale.": [],
     };
 
     const maxNumGame = Math.max(
@@ -107,11 +108,11 @@ const Bracket = () => {
       if (i <= 15 && i > 7) {
         currentStage = "Osmina-finala";
       } else if (i <= 7 && i > 3) {
-        currentStage = "Cetvrtfinale";
+        currentStage = "Cetvrt-finale";
       } else if (i <= 3 && i > 1) {
-        currentStage = "Polufinale";
+        currentStage = "Polu-finale";
       } else if (i === 1) {
-        currentStage = "Finale";
+        currentStage = "Finale.";
       }
 
       const matchesInStage = matches.filter(
@@ -124,6 +125,7 @@ const Bracket = () => {
 
   const updateStagesWithWinners = (stages) => {
     const updateMatch = (stageName, currentMatches) => {
+      console.log(currentMatches);
       const nextStageMatches = stages[stageName];
       currentMatches.forEach((utakmica) => {
         const winner =
@@ -149,9 +151,9 @@ const Bracket = () => {
       });
     };
 
-    updateMatch("Cetvrtfinale", stages["Osmina-finala"]);
-    updateMatch("Polufinale", stages["Cetvrtfinale"]);
-    updateMatch("Finale", stages["Polufinale"]);
+    updateMatch("Cetvrt-finale", stages["Osmina-finala"]);
+    updateMatch("Polu-finale", stages["Cetvrt-finale"]);
+    updateMatch("Finale.", stages["Polu-finale"]);
   };
 
   const handleMatchesNavigation = () => {

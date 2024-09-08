@@ -60,23 +60,23 @@ const Utakmica = () => {
     }
   }, [id]);
 
-  // useEffect(() => {
-  //   fetchTournament();
+  useEffect(() => {
+    fetchTournament();
 
-  //   const pusher = new Pusher("1ef4a6a15882c25d1174", {
-  //     cluster: "eu",
-  //     encrypted: true,
-  //   });
+    // const pusher = new Pusher("1ef4a6a15882c25d1174", {
+    //   cluster: "eu",
+    //   encrypted: true,
+    // });
 
-  //   const channel = pusher.subscribe("tournament." + id);
-  //   channel.bind("tournament-stats-updated", function (data) {
-  //     fetchTournament();
-  //   });
+    // const channel = pusher.subscribe("tournament." + id);
+    // channel.bind("tournament-stats-updated", function (data) {
+    //   fetchTournament();
+    // });
 
-  //   return () => {
-  //     pusher.unsubscribe("tournament." + id);
-  //   };
-  // }, [id]);
+    // return () => {
+    //   pusher.unsubscribe("tournament." + id);
+    // };
+  }, [id]);
 
   useEffect(() => {
     if (tournament) {
@@ -175,10 +175,10 @@ const Utakmica = () => {
 
   const generateStages = (matches) => {
     const stages = {
-      "Osmina finala": [],
-      Četvrtfinale: [],
-      Polufinale: [],
-      Finale: [],
+      "Osmina-finala": [],
+      "Cetvrt-finale": [],
+      "Polu-finale": [],
+      "Finale.": [],
     };
 
     // Pronađi maksimalni broj_utakmice
@@ -194,13 +194,13 @@ const Utakmica = () => {
       console.log(i);
 
       if (i <= 15 && i > 7) {
-        currentStage = "Osmina finala";
+        currentStage = "Osmina-finala";
       } else if (i <= 7 && i > 3) {
-        currentStage = "Četvrtfinale";
+        currentStage = "Cetvrt-finale";
       } else if (i <= 3 && i > 1) {
-        currentStage = "Polufinale";
+        currentStage = "Polu-finale";
       } else if (i === 1) {
-        currentStage = "Finale";
+        currentStage = "Finale.";
       }
 
       const matchesInStage = matches.filter(
@@ -223,7 +223,8 @@ const Utakmica = () => {
 
       currentMatches.forEach((utakmica) => {
         const numGame = utakmica.broj_utakmice;
-        const winner = utakmica.status === "completed" ? utakmica.winner : null;
+        const winner =
+          utakmica.status === "completed" ? utakmica.pobednik : null;
 
         if (winner) {
           const nextMatch = nextStageMatches.find(
@@ -231,16 +232,16 @@ const Utakmica = () => {
           );
           if (nextMatch) {
             if (
-              nextMatch.home_team &&
-              !nextMatch.home_team.name.includes("Unknown Team") &&
+              nextMatch.domaci_tim &&
+              !nextMatch.domaci_tim.naziv.includes("Unknown Team") &&
               numGame % 2 !== 0
             ) {
-              nextMatch.home_team = winner;
+              nextMatch.domaci_tim = winner;
             } else if (
-              nextMatch.away_team &&
-              !nextMatch.away_team.name.includes("Unknown Team")
+              nextMatch.gostujuci_tim &&
+              !nextMatch.gostujuci_tim.naziv.includes("Unknown Team")
             ) {
-              nextMatch.away_team = winner;
+              nextMatch.gostujuci_tim = winner;
             }
           }
         } else {
@@ -249,9 +250,9 @@ const Utakmica = () => {
     };
 
     // Ažuriraj mečeve za sve faze
-    updateMatch("Četvrtfinale", stages["Osmina finala"]);
-    updateMatch("Polufinale", stages["Četvrtfinale"]);
-    updateMatch("Finale", stages["Polufinale"]);
+    updateMatch("Cetvrt-finale", stages["Osmina-finala"]);
+    updateMatch("Polu-finale", stages["Cetvrt-finale"]);
+    updateMatch("Finale.", stages["Polu-finale"]);
   };
 
   const tournamentName = tournament?.naziv || "";

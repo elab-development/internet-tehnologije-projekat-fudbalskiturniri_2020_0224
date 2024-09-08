@@ -215,8 +215,7 @@ class TurnirController extends Controller
     {
         try{
             $turnir = Turnir::findOrFail($id);
-            return new ($tournament);
-            return response()->json($turnir, 200);
+            return new TurnirResource($turnir);
         }
         catch (\Exception $e) {
             \Log::error($e->getMessage());
