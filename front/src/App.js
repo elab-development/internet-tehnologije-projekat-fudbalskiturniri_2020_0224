@@ -14,6 +14,7 @@ import Timovi from "./Components/Timovi/Timovi";
 import Igraci from "./Components/Igraci/Igraci";
 import Omiljeni from "./Components/Omiljeni/Omiljeni";
 import Utakmica from "./Components/Utakmica/Utakmica";
+import Bracket from "./Components/Bracket/Bracket";
 
 const App = () => {
   return (
@@ -63,8 +64,8 @@ const App = () => {
               </PrivatnaRuta>
             }
           />
-          
-        <Route
+
+          <Route
             path="/utakmice/:id"
             element={
               <PrivatnaRuta>

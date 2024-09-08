@@ -60,23 +60,23 @@ const Utakmica = () => {
     }
   }, [id]);
 
-  useEffect(() => {
-    fetchTournament();
+  // useEffect(() => {
+  //   fetchTournament();
 
-    const pusher = new Pusher("1ef4a6a15882c25d1174", {
-      cluster: "eu",
-      encrypted: true,
-    });
+  //   const pusher = new Pusher("1ef4a6a15882c25d1174", {
+  //     cluster: "eu",
+  //     encrypted: true,
+  //   });
 
-    const channel = pusher.subscribe("tournament." + id);
-    channel.bind("tournament-stats-updated", function (data) {
-      fetchTournament();
-    });
+  //   const channel = pusher.subscribe("tournament." + id);
+  //   channel.bind("tournament-stats-updated", function (data) {
+  //     fetchTournament();
+  //   });
 
-    return () => {
-      pusher.unsubscribe("tournament." + id);
-    };
-  }, [id]);
+  //   return () => {
+  //     pusher.unsubscribe("tournament." + id);
+  //   };
+  // }, [id]);
 
   useEffect(() => {
     if (tournament) {
