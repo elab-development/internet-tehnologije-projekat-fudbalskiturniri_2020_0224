@@ -109,12 +109,12 @@ const StatistikaIgraca = ({ id, onClose, matchStatus }) => {
 
   if (showEnterStatsPopup) {
     return (
-      <EnterStatsPopup id={id} onClose={() => setShowEnterStatsPopup(false)} />
+      <UnosStatistike id={id} onClose={() => setShowEnterStatsPopup(false)} />
     );
   }
 
   if (showMatchDetails) {
-    return <MatchDetailsPopup id={id} onClose={onClose} />;
+    return <StatistikaMeca id={id} onClose={onClose} />;
   }
 
   return (

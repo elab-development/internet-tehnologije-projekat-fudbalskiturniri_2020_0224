@@ -1,0 +1,167 @@
+/* MatchDetailsPopup.css */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .popup-content {
+    background: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+    max-width: 1400px !important;
+    height: 500px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: black; /* Set color to black */
+  }
+  
+  .match-summary {
+    text-align: center;
+  }
+  
+  .match-title {
+    font-size: 24px;
+    margin: 0;
+    font-weight: bold;
+    color: black; /* Set color to black */
+  }
+  
+  .match-stats {
+    margin-top: 20px;
+  }
+  
+  .stats-row {
+    margin-bottom: 20px;
+  }
+  
+  .stat-label {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 8px;
+    color: black; /* Set color to black */
+  }
+  
+  .stat-bar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space between stats and bars */
+    margin: 0 20px;
+  }
+  
+  .stat-bar {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    height: 30px;
+    border: 1px solid #ccc;
+    position: relative;
+  }
+  
+  .bar-team1 {
+    height: 100%;
+    background: red;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+  }
+  
+  .bar-team2 {
+    height: 100%;
+    background: rgb(14, 109, 60);
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+  
+  .stats-numbers {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .team-stats {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    color: black; /* Set color to black */
+  }
+  
+  .team1-stats {
+    text-align: left;
+    margin-right: 10px;
+  }
+  
+  .team2-stats {
+    text-align: right;
+    margin-left: 10px;
+  }
+  .popup-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .stat-btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0 5px;
+  }
+  
+  .stat-btn:hover {
+    background-color: #2980b9;
+  }
+  
+  
+  
+  
+  
+  
+  
+  .spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .spinner {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
