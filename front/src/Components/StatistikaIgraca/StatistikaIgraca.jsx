@@ -4,7 +4,7 @@ import "./StatistikaIgraca.css";
 import { useLocation } from "react-router-dom";
 import UnosStatistike from "../UnosStatistike/UnosStatistike";
 import StatistikaMeca from "../StatistikaMeca/StatistikaMeca";
-// import Pusher from "pusher-js";
+import Pusher from "pusher-js";
 
 const StatistikaIgraca = ({ id, onClose, matchStatus }) => {
   const [playerStats, setPlayerStats] = useState({
@@ -40,19 +40,19 @@ const StatistikaIgraca = ({ id, onClose, matchStatus }) => {
     };
     fetchPlayerStats();
 
-    // const pusher = new Pusher("1ef4a6a15882c25d1174", {
-    //   cluster: "eu",
-    //   encrypted: true,
-    // });
+    const pusher = new Pusher("1ef4a6a15882c25d1174", {
+      cluster: "eu",
+      encrypted: true,
+    });
 
-    // const channel = pusher.subscribe("game." + id);
-    // channel.bind("match-stats-updated", function (data) {
-    //   fetchPlayerStats();
-    // });
+    const channel = pusher.subscribe("utakmica." + id);
+    channel.bind("promena-statistika", function (data) {
+      fetchPlayerStats();
+    });
 
-    // return () => {
-    //   pusher.unsubscribe("game." + id);
-    // };
+    return () => {
+      pusher.unsubscribe("utakmica." + id);
+    };
   }, []);
 
   const populateStats = (data) => {
@@ -129,7 +129,7 @@ const StatistikaIgraca = ({ id, onClose, matchStatus }) => {
             {playerStats.homeTeam.map((igrac, index) => (
               <div key={index} className="player-item">
                 <div className="player-name">
-                  {igrac.name} (Pozicija: {igrac.pozicija})
+                  {igrac.ime + " " + igrac.prezime} (Pozicija: {igrac.pozicija})
                 </div>
                 <div className="player-stats-detail">
                   <div>Broj golova: {igrac.golovi}</div>
@@ -148,7 +148,7 @@ const StatistikaIgraca = ({ id, onClose, matchStatus }) => {
             {playerStats.awayTeam.map((igrac, index) => (
               <div key={index} className="player-item">
                 <div className="player-name">
-                  {igrac.name} (Broj: {igrac.number})
+                  {igrac.ime + " " + igrac.prezime} (Pozicija: {igrac.pozicija})
                 </div>
                 <div className="player-stats-detail">
                   <div>Broj golova: {igrac.golovi}</div>

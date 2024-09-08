@@ -2,11 +2,11 @@ import axios from "axios";
 import "./StatistikaMeca.css";
 import { useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import StatistikaIgraca from "./StatistikaIgraca";
+import StatistikaIgraca from "../StatistikaIgraca/StatistikaIgraca";
 import UnosStatistike from "../UnosStatistike/UnosStatistike";
-// import Pusher from "pusher-js";
+import Pusher from "pusher-js";
 
-const MatchDetailsPopup = ({ id, onClose }) => {
+const StatistikaMeca = ({ id, onClose }) => {
   const [showMatchDetails, setShowMatchDetails] = useState(true);
   const [showPlayerStats, setShowPlayerStats] = useState(false);
   const [showEnterStatsPopup, setShowEnterStatsPopup] = useState(false);
@@ -34,20 +34,20 @@ const MatchDetailsPopup = ({ id, onClose }) => {
     };
     fetchMatchData();
 
-    // const pusher = new Pusher("1ef4a6a15882c25d1174", {
-    //   cluster: "eu",
-    //   encrypted: true,
-    // });
+    const pusher = new Pusher("1ef4a6a15882c25d1174", {
+      cluster: "eu",
+      encrypted: true,
+    });
 
-    // const channel = pusher.subscribe("game." + id);
-    // channel.bind("match-stats-updated", function (data) {
-    //   console.log("PUSHEEER");
-    //   fetchMatchData();
-    // });
+    const channel = pusher.subscribe("utakmica." + id);
+    channel.bind("promena-statistika", function (data) {
+      console.log("PUSHEEER");
+      fetchMatchData();
+    });
 
-    // return () => {
-    //   pusher.unsubscribe("game." + id);
-    // };
+    return () => {
+      pusher.unsubscribe("utakmica." + id);
+    };
   }, []);
 
   const handlePlayerStats = () => {
@@ -92,8 +92,8 @@ const MatchDetailsPopup = ({ id, onClose }) => {
 
     if (matchData) {
       tim.igraci.forEach((igrac) => {
-        (yellowCards += igrac.statistika_igraca.zuti_kartoni),
-          (redCards += igrac.statistika_igraca.crveni_kartoni);
+        yellowCards += igrac.statistika_igraca.zuti_kartoni;
+        redCards += igrac.statistika_igraca.crveni_kartoni;
       });
     }
 
@@ -313,4 +313,4 @@ const MatchDetailsPopup = ({ id, onClose }) => {
   );
 };
 
-export default MatchDetailsPopup;
+export default StatistikaMeca;

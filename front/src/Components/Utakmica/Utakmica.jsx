@@ -3,7 +3,7 @@ import { useParams, useLocation, useNavigate } from "react-router-dom";
 import "./Utakmica.css";
 import axios from "axios";
 import Navigacija from "../Navigation/Navigacija";
-// import MatchDetailsPopup from "./MatchDetailsPopup";
+import StatistikaMeca from "../StatistikaMeca/StatistikaMeca";
 import Pusher from "pusher-js";
 const Utakmica = () => {
   const [tournaments, setTournaments] = useState([]);
@@ -63,19 +63,19 @@ const Utakmica = () => {
   useEffect(() => {
     fetchTournament();
 
-    // const pusher = new Pusher("1ef4a6a15882c25d1174", {
-    //   cluster: "eu",
-    //   encrypted: true,
-    // });
+    const pusher = new Pusher("1ef4a6a15882c25d1174", {
+      cluster: "eu",
+      encrypted: true,
+    });
 
-    // const channel = pusher.subscribe("tournament." + id);
-    // channel.bind("tournament-stats-updated", function (data) {
-    //   fetchTournament();
-    // });
+    const channel = pusher.subscribe("turnir." + id);
+    channel.bind("promena_turnira", function (data) {
+      fetchTournament();
+    });
 
-    // return () => {
-    //   pusher.unsubscribe("tournament." + id);
-    // };
+    return () => {
+      pusher.unsubscribe("turnir." + id);
+    };
   }, [id]);
 
   useEffect(() => {
@@ -367,13 +367,13 @@ const Utakmica = () => {
             )
         )}
       </div>
-      {/* {showPopup && (
+      {showPopup && (
         <div className="popup-container">
           <div className="popup-content">
-            <MatchDetailsPopup id={selectedMatch} onClose={handleClosePopup} />
+            <StatistikaMeca id={selectedMatch} onClose={handleClosePopup} />
           </div>
         </div>
-      )} */}
+      )}
     </div>
   );
 };

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import StatistikaIgraca from "./StatistikaIgraca";
+import StatistikaIgraca from "../StatistikaIgraca/StatistikaIgraca";
 import StatistikaMeca from "../StatistikaMeca/StatistikaMeca";
 import "./UnosStatistike.css";
 
-const EnterStatsPopup = ({ id, onClose }) => {
+const UnosStatistike = ({ id, onClose }) => {
   const [showMatchDetails, setShowMatchDetails] = useState(false);
   const [showPlayerStats, setShowPlayerStats] = useState(false);
   const [showEnterStatsPopup, setShowEnterStatsPopup] = useState(true);
@@ -75,7 +75,7 @@ const EnterStatsPopup = ({ id, onClose }) => {
 
         setTeam1Stats({
           id: homeTeamStats.map((igrac) => igrac.id),
-          names: homeTeamStats.map((igrac) => igrac.prezime),
+          names: homeTeamStats.map((igrac) => igrac.name),
           goals: homeTeamStats.map((igrac) => igrac.golovi),
           assists: homeTeamStats.map((igrac) => igrac.asistencije),
           shotsOnTarget: homeTeamStats.map((igrac) => igrac.sutevi_u_gol),
@@ -86,14 +86,14 @@ const EnterStatsPopup = ({ id, onClose }) => {
         });
 
         setTeam2Stats({
-          id: homeTeamStats.map((igrac) => igrac.id),
-          names: homeTeamStats.map((igrac) => igrac.prezime),
-          goals: homeTeamStats.map((igrac) => igrac.golovi),
-          assists: homeTeamStats.map((igrac) => igrac.asistencije),
-          shotsOnTarget: homeTeamStats.map((igrac) => igrac.sutevi_u_gol),
-          shotsOffTarget: homeTeamStats.map((igrac) => igrac.sutevi_van_gola),
-          yellowCards: homeTeamStats.map((igrac) => igrac.zuti_kartoni),
-          redCards: homeTeamStats.map((igrac) => igrac.crveni_kartoni),
+          id: awayTeamStats.map((igrac) => igrac.id),
+          names: awayTeamStats.map((igrac) => igrac.name),
+          goals: awayTeamStats.map((igrac) => igrac.golovi),
+          assists: awayTeamStats.map((igrac) => igrac.asistencije),
+          shotsOnTarget: awayTeamStats.map((igrac) => igrac.sutevi_u_gol),
+          shotsOffTarget: awayTeamStats.map((igrac) => igrac.sutevi_van_gola),
+          yellowCards: awayTeamStats.map((igrac) => igrac.zuti_kartoni),
+          redCards: awayTeamStats.map((igrac) => igrac.crveni_kartoni),
           possession: data.statistika_utakmice.posed_lopte_domacin || 0,
         });
       } catch (error) {
@@ -292,4 +292,4 @@ const EnterStatsPopup = ({ id, onClose }) => {
   );
 };
 
-export default EnterStatsPopup;
+export default UnosStatistike;

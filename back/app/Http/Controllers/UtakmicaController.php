@@ -7,6 +7,8 @@ use App\Models\Tim;
 use Illuminate\Http\Request;
 use App\Models\Tournament;
 use App\Models\Turnir;
+use App\Events\TurnirUpdated;
+use App\Events\StatistikaUtakmiceUpdated;
  
 class UtakmicaController extends Controller
 {
@@ -54,9 +56,9 @@ class UtakmicaController extends Controller
             $utakmica = Utakmica::findOrFail($id);
 
             
-            $gameStats = $game->stats_game;
-            $gameStats->sut_u_okvir_domacin = array_sum($request->input('home_team.players.shotsOnTarget'));
-            $gameStats->sut_van_okvira_domacin = array_sum($request->input('home_team.players.shotsOffTarget'));
+            $gameStats = $utakmica->statistika_utakmice;
+            $gameStats->sutevi_u_gol_domacina = array_sum($request->input('home_team.players.shotsOnTarget'));
+            $gameStats->sutevi_van_gola_domacina = array_sum($request->input('home_team.players.shotsOffTarget'));
             $gameStats->sut_u_okvir_gost = array_sum($request->input('away_team.players.shotsOnTarget'));
             $gameStats->sut_van_okvira_gost = array_sum($request->input('away_team.players.shotsOffTarget'));
             $gameStats->broj_suteva_domacin= $gameStats->sut_u_okvir_domacin +   $gameStats->sut_van_okvira_domacin;
@@ -69,7 +71,7 @@ class UtakmicaController extends Controller
             $homeTeamStats = $request->input('home_team.players');
             $totalHomeGoals = 0; 
             foreach ($homeTeamStats['id'] as $index => $playerId) {
-                $playerStats = PlayerStats::where('game_id', $id)
+                $playerStats = StatistikaIgraca::where('game_id', $id)
                                         ->where('player_id', $playerId)
                                         ->firstOrFail();
                 $playerStats->broj_golova = $homeTeamStats['goals'][$index];
@@ -85,7 +87,7 @@ class UtakmicaController extends Controller
             $awayTeamStats = $request->input('away_team.players');
             $totalAwayGoals = 0; 
             foreach ($awayTeamStats['id'] as $index => $playerId) {
-                $playerStats = PlayerStats::where('game_id', $id)
+                $playerStats = StatistikaIgraca::where('game_id', $id)
                                         ->where('player_id', $playerId)
                                         ->firstOrFail();
                 $playerStats->broj_golova = $awayTeamStats['goals'][$index];
@@ -104,8 +106,8 @@ class UtakmicaController extends Controller
             $game->save();
 
 
-            broadcast(new MatchStatsUpdated($game->_id));
-            broadcast(new TournamentUpdated($game->tournament_id));
+            broadcast(new StatistikaUtakmiceUpdated($game->_id));
+            broadcast(new TurnirUpdated($game->tournament_id));
             return response()->json(['message' => 'Game and player stats updated successfully']);
         }
         catch (\Exception $e) {
@@ -117,7 +119,7 @@ class UtakmicaController extends Controller
  
     public function updateWinner(Request $request,$id){
         try{
-            $game = Game::findOrFail($id);
+            $game = Utakmica::findOrFail($id);
             $home_team_goals = $game->broj_golova_domacin;
             $away_team_goals = $game->broj_golova_gost;
             if($home_team_goals>$away_team_goals || $home_team_goals<$away_team_goals){
@@ -136,14 +138,14 @@ class UtakmicaController extends Controller
             $br = $game->broj_utakmice;
             if($br!==1){
                 $new_game_num = intdiv($br,2);
-                $matchingGame = Game::where('broj_utakmice', $new_game_num)
+                $matchingGame = Utakmica::where('broj_utakmice', $new_game_num)
                 ->where('tournament_id', $game->tournament_id)
                 ->first();
                
     
                 function createPlayerStatsForTeam($team, $gameId) {
                     foreach ($team->players as $player) {
-                        $playerStats = PlayerStats::create([
+                        $playerStats = StatistikaIgraca::create([
                             'broj_golova' => 0,
                             'broj_asistencija' => 0,
                             'broj_zutih_kartona' => 0,
@@ -194,10 +196,10 @@ class UtakmicaController extends Controller
  
     public function updateStatus(Request $request,$id){
         try{
-            $game = Game::findOrFail($id);
-            $game->status = $request->input('status');
-            $game->save();
-            broadcast(new TournamentUpdated($game->tournament_id));
+            $utakmica = Utakmica::findOrFail($id);
+            $utakmica->status = $request->input('status');
+            $utakmica->save();
+            broadcast(new TurnirUpdated($utakmica->turnir_id));
         }
         catch (\Exception $e) {
             \Log::error($e->getMessage());

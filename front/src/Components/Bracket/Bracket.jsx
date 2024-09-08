@@ -66,7 +66,7 @@ const Bracket = () => {
     });
 
     const channel = pusher.subscribe("turnir." + id);
-    channel.bind("tournament-stats-updated", function (data) {
+    channel.bind("promena_turnira", function (data) {
       fetchTournament();
     });
 
