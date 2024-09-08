@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 import "./Timovi.css";
 import Navigacija from "../Navigation/Navigacija";
+
 const Timovi = () => {
   const [teams, setTeams] = useState([]);
   const location = useLocation();
@@ -24,6 +25,7 @@ const Timovi = () => {
         const teamsData = response.data.data.map((tim) => ({
           id: tim.id,
           naziv: tim.naziv,
+          mesto: tim.mesto,
           igraci: tim.igraci.map((igrac) => igrac.ime + " " + igrac.prezime),
         }));
         setTeams(teamsData);

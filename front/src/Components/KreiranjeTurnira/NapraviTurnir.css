@@ -1,101 +1,161 @@
+/* Global settings */
+body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Arial', sans-serif; /* Unified font for better readability */
+  color: #fff; /* Default color for text */
+  background-color: #000; /* Black background */
+}
+
+/* Container for the create tournament form */
 .create-tournament-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
   margin-top: 100px;
-  border: 1px solid black;
-  background-color: #ddd;
+  border: 1px solid #333; /* Light border for modern look */
+  background-color: #000; /* Black background for container */
+  border-radius: 12px; /* Rounded corners for modern appearance */
+  max-width: 1600px; /* Further increased width for more space */
+  width: 100%; /* Full width of the container */
+  min-height: 600px; /* Minimum height for better spacing */
+  position: relative; /* For positioning buttons at the bottom */
 }
 
+/* Heading styles */
 .create-tournament-container h2 {
   margin-bottom: 20px;
+  color: #d3d3d3; /* Light grey color for heading */
+  text-align: center; /* Center align heading */
 }
 
-.input-container {
-  margin-bottom: 20px;
+/* Form layout */
+.create-tournament-form {
+  display: flex;
+  gap: 20px; /* Space between left and right sections */
+  width: 100%;
+}
+
+/* Left section for form inputs */
+.form-left {
+  flex: 2; /* Takes up more space */
   display: flex;
   flex-direction: column;
+  gap: 20px; /* Space between each input */
 }
 
+/* Right section for logo */
+.form-right {
+  flex: 1; /* Takes up less space */
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between elements */
+}
+
+/* Input container styling */
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px; /* Space between label and input */
+}
+
+/* Labels */
 .input-container label {
   margin-bottom: 5px;
+  color: #d3d3d3; /* Light grey color for labels */
+  white-space: nowrap; /* Prevents text from wrapping */
 }
 
+/* Input fields and select box */
 .input-container input,
 .input-container select {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  width: 300px;
+  padding: 12px;
+  border: 1px solid #666; /* Darker border for inputs */
+  border-radius: 8px; /* Rounded corners for input fields */
+  width: 100%; /* Full width within the container */
+  background-color: #333; /* Dark background for input fields */
+  color: #fff; /* White text color for input fields */
 }
 
+/* Button styling */
 .choose-logo-btn {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
+  padding: 12px 24px;
+  background-color: #3498db; /* Blue color */
+  color: #fff; /* White text color */
   border: none;
-  border-radius: 5px;
+  border-radius: 8px; /* Rounded corners for buttons */
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .choose-logo-btn:hover {
-  background-color: #0056b3;
+  background-color: #2980b9; /* Darker shade of blue on hover */
 }
 
+/* Placeholder for logo */
 .logo-placeholder {
   margin-top: 10px;
   width: 100px;
   height: 100px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 1px solid #666;
+  border-radius: 8px; /* Rounded corners for the placeholder */
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #333; /* Dark background for placeholder */
 }
 
 .logo-placeholder p {
   margin: 0;
-  color: #999;
+  color: #d3d3d3; /* Light grey color for placeholder text */
 }
 
-/* Added CSS for the logo preview */
+/* Logo preview image */
 .logo-preview {
-  width: 100px; /* Set the width of the logo preview image */
-  height: auto; /* Maintain the aspect ratio */
-  margin-top: 10px; /* Add some space above the preview */
-  border: 1px solid #ccc; /* Optional: border for better visibility */
-  border-radius: 5px; /* Optional: rounded corners */
+  width: 100px;
+  height: auto;
+  margin-top: 10px;
+  border: 1px solid #666;
+  border-radius: 8px; /* Rounded corners for logo preview */
 }
 
+/* Button container styling */
 .button-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Space buttons evenly */
+  position: absolute;
+  bottom: 20px; /* Space from the bottom */
+  left: 20px; /* Space from the left edge */
+  right: 20px; /* Space from the right edge */
 }
 
+/* Action buttons */
 .action-btn {
-  padding: 10px 20px !important;
+  padding: 12px 24px;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  color: white;
+  color: #fff; /* White text color for buttons */
+  font-weight: bold;
+  min-width: 120px; /* Ensure buttons have consistent width */
 }
 
+/* Back button styling */
 .create-back-btn {
-  background-color: #6c757d !important;
+  background-color: #000; /* Black color */
 }
 
 .create-back-btn:hover {
-  background-color: #5a6268 !important;
+  background-color: #333; /* Darker shade of black */
 }
 
+/* Next button styling */
 .create-next-btn {
-  background-color: #007bff;
-  padding: 20px 20px !important;
+  background-color: #000; /* Black color */
 }
 
 .create-next-btn:hover {
-  background-color: #0056b3;
+  background-color: #333; /* Darker shade of black */
 }

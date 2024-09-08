@@ -1,51 +1,69 @@
-body{
+/* Global settings */
+body {
   height: 100%;
-  
+  background-color: #000; /* Black background for the page */
+  color: #f5f5f5; /* Light gray text color for general content */
+  font-family: Arial, sans-serif; /* Unified font for better readability */
+  margin: 0;
 }
 
-
+/* Container for the teams list */
 .teams-container {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    padding-top: 70px; /* Adjust top padding to account for fixed navigation */
-  }
-  .teams-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  
-  .team-card {
-    border: 1px solid #dddddd;
-    background-color: #FEFEFA;
-    border-radius: 8px;
-    padding: 10px;
-    width: 200px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
+  padding: 20px;
+  padding-top: 70px; /* Adjust top padding to account for fixed navigation */
+}
 
-  .team-card:hover {
-    transform: translateY(-5px); /* Lift up on hover */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
-    cursor: pointer;
-  }
+/* Teams list styling */
+.teams-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center; /* Center align the list of teams */
+}
 
-  .players-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    font-size: 14px;
-  }
-  
-  .players-list li {
-    margin-bottom: 5px;
-  }
-  h3 {
-    font-size: 20px;
-    margin-bottom: 20px;
-    margin-top: 0;
-  }
-  h1{
-    color:black;
-  }
+/* Team card styling */
+.team-card {
+  border: 1px solid #333; /* Darker border for better contrast */
+  background-color: #222; /* Black background for team cards */
+  border-radius: 12px; /* Rounded corners for modern look */
+  padding: 20px; /* Increased padding for better spacing */
+  width: 220px; /* Slightly wider card for better readability */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Deeper shadow for depth */
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+  color: #fff; /* White text color for all text in team card */
+}
+
+/* Team card hover effect */
+.team-card:hover {
+  transform: translateY(-10px); /* Lift up on hover */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4); /* Darker shadow on hover */
+  cursor: pointer;
+}
+
+/* Players list styling */
+.players-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+}
+
+/* Players list item styling */
+.players-list li {
+  margin-bottom: 5px;
+}
+
+/* Heading styles */
+h1.title {
+  color: #222; /* Black color for the main heading "SVI TIMOVI" */
+  text-align: center;
+  margin-bottom: 30px; /* Added margin for spacing */
+}
+
+h3 {
+  color: #fff; /* White color for card headings */
+  font-size: 20px;
+  margin-bottom: 20px;
+  margin-top: 0;
+}

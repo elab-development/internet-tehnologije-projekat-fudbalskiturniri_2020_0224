@@ -1,45 +1,80 @@
+/* Global settings */
+body {
+  height: 100%;
+  background-color: #000; /* Black background for the page */
+  color: #f5f5f5; /* Light gray text color */
+  font-family: 'Arial', sans-serif; /* Unified font for better readability */
+  margin: 0;
+}
+
+/* Bracket container */
 .bracket-container {
   display: flex;
   height: auto;
   width: 100vw;
   text-align: center;
-
-
 }
 
-.bracket-content{
+.bracket-content {
   flex-grow: 1;
   padding: 30px;
   margin-top: 60px;
-  gap:60px;
+  gap: 60px;
   margin-left: 250px;
-  
 }
 
+/* Tournament title */
 .tournament-title {
   margin-top: 50px;
   text-align: center;
-  font-size: 2.5rem;      /* Veći font za naslov */
+  font-size: 2.5rem; /* Larger font for the title */
   font-weight: 700;
-  color: #007bff;
+  color: #222; /* Dark color for the title */
   letter-spacing: 1.2px;
 }
 
+/* Action buttons */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.action-btn {
+  background-color: #6ca0dc; /* Blue color for the buttons */
+  color: #fff; /* White text color */
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.action-btn:hover {
+  background-color: #5491c5; /* Slightly darker blue on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Bracket match container */
 .bracket-match {
   display: flex;
   justify-content: center;
-  gap:50px;
+  gap: 50px;
   width: 100%;
 }
 
+/* Bracket column */
 .bracket-column {
   padding: 20px;
-  border-radius: 16px;  
+  border-radius: 16px;
   display: flex;
   flex-direction: column;
   gap: 50px;
   width: 280px;
-  background-color: #FEFEFA;
+  background-color: #222; /* Dark background for bracket columns */
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -49,23 +84,25 @@
   box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
 }
 
+/* Phase title */
 .phase-title {
   text-align: center;
   margin-bottom: 20px;
   font-size: 1.5rem;
-  font-weight: 600; 
-  color: #444;
+  font-weight: 600;
+  color: #f5f5f5; /* Light color for phase titles */
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
+/* Bracket card */
 .bracket-card {
-  padding: 20px;            /* Povećana margina */
-  border: 1px solid #d1d1e0; /* Svetlija nijansa granice */
-  border-radius: 12px;      
-  background-color: #cfcfcf;
-  font-weight: 500; 
-  color: #000000;
+  padding: 20px; /* Increased padding */
+  border: 1px solid #444; /* Darker border for better contrast */
+  border-radius: 12px;
+  background-color: #333; /* Dark background for bracket cards */
+  font-weight: 500;
+  color: #fff; /* White text color */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
@@ -120,7 +157,6 @@
 .finale .bracket-card {
   padding-top: 50px;
   padding-bottom: 50px;
-  font-size: 1.5rem;       /* Povećan font */
-  font-weight: 700;        /* Podebljan font */
-  
+  font-size: 1.5rem; /* Larger font size */
+  font-weight: 700; /* Bolder font */
 }

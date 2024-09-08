@@ -1,167 +1,187 @@
-/* MatchDetailsPopup.css */
+/* src/MatchDetailsPopup.css */
+
 .popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  .popup-content {
-    background: rgb(255, 255, 255);
-    padding: 20px;
-    border-radius: 8px;
-    position: relative;
-    max-width: 1400px !important;
-    height: 500px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: transparent;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: black; /* Set color to black */
-  }
-  
-  .match-summary {
-    text-align: center;
-  }
-  
-  .match-title {
-    font-size: 24px;
-    margin: 0;
-    font-weight: bold;
-    color: black; /* Set color to black */
-  }
-  
-  .match-stats {
-    margin-top: 20px;
-  }
-  
-  .stats-row {
-    margin-bottom: 20px;
-  }
-  
-  .stat-label {
-    text-align: center;
-    font-size: 18px;
-    margin-bottom: 8px;
-    color: black; /* Set color to black */
-  }
-  
-  .stat-bar-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Space between stats and bars */
-    margin: 0 20px;
-  }
-  
-  .stat-bar {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    height: 30px;
-    border: 1px solid #ccc;
-    position: relative;
-  }
-  
-  .bar-team1 {
-    height: 100%;
-    background: red;
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-  }
-  
-  .bar-team2 {
-    height: 100%;
-    background: rgb(14, 109, 60);
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-  }
-  
-  .stats-numbers {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-  }
-  
-  .team-stats {
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    color: black; /* Set color to black */
-  }
-  
-  .team1-stats {
-    text-align: left;
-    margin-right: 10px;
-  }
-  
-  .team2-stats {
-    text-align: right;
-    margin-left: 10px;
-  }
-  .popup-buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-  }
-  
-  .stat-btn {
-    background-color: #3498db;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    margin: 0 5px;
-  }
-  
-  .stat-btn:hover {
-    background-color: #2980b9;
-  }
-  
-  
-  
-  
-  
-  
-  
-  .spinner-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .spinner {
-    border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #3498db; /* Blue */
-    border-radius: 50%;
-    width: 120px;
-    height: 120px;
-    animation: spin 2s linear infinite;
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Mračnija pozadina za bolji kontrast */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background: #1e1e1e; /* Moderna, tamna crna boja pozadine */
+  padding: 30px; /* Veće udaljenosti za bolje vizuelno iskustvo */
+  border-radius: 12px; /* Zaobljeni uglovi za moderan izgled */
+  position: relative;
+  max-width: 1200px; /* Smanjena maksimalna širina */
+  width: 90%; /* Veća fleksibilnost sa širinom */
+  height: auto; /* Automatska visina prema sadržaju */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Veći senki za bolji efekat dubine */
+  overflow-y: auto; /* Omogućava skrolovanje ako je potrebno */
+  color: #d3d3d3; /* Svetlo siva boja za sav tekst */
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #ff4757; /* Modernija boja za dugme za zatvaranje */
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 28px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Dodata senka za dubinu */
+  transition: background 0.3s ease, transform 0.3s ease; /* Glatke promene za hover efekte */
+}
+
+.close-btn:hover {
+  background: #e84118; /* Tamnija boja na hover */
+  transform: scale(1.1); /* Blago uvećanje na hover */
+}
+
+.match-summary {
+  text-align: center;
+  margin-bottom: 20px; /* Razmak od ostatka sadržaja */
+}
+
+.match-title {
+  font-size: 28px; /* Veće font veličine za naslove */
+  margin: 0;
+  font-weight: 600; /* Jači font weight za naslove */
+  color: #d3d3d3; /* Svetlo siva boja za naslov */
+}
+
+.match-stats {
+  margin-top: 20px;
+}
+
+.stats-row {
+  margin-bottom: 30px; /* Veći razmak između redova */
+}
+
+.stat-label {
+  text-align: center;
+  font-size: 20px; /* Veća font veličina za labela */
+  margin-bottom: 10px;
+  color: #d3d3d3; /* Svetlo siva boja za labela */
+}
+
+.stat-bar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 15px;
+}
+
+.stat-bar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  height: 40px; /* Veća visina trake */
+  border-radius: 5px; /* Zaobljeni uglovi za trake */
+  overflow: hidden; /* Sakriva prelazak trake */
+  border: 1px solid #ddd; /* Svetla ivica trake */
+  position: relative;
+}
+
+.bar-team1 {
+  height: 100%;
+  background: #ff6348; /* Svetla crvena boja za tim 1 */
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  transition: width 0.3s ease; /* Glatke promene širine trake */
+}
+
+.bar-team2 {
+  height: 100%;
+  background: #2ed573; /* Svetla zelena boja za tim 2 */
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  transition: width 0.3s ease; /* Glatke promene širine trake */
+}
+
+.stats-numbers {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: 18px; /* Veće font veličine za brojeve */
+  color: #d3d3d3; /* Svetlo siva boja za brojeve */
+}
+
+.team-stats {
+  font-size: 18px; /* Veće font veličine za statistike timova */
+  display: flex;
+  align-items: center;
+  color: #d3d3d3; /* Svetlo siva boja za tekst timova */
+}
+
+.team1-stats {
+  text-align: left;
+  margin-right: 10px;
+}
+
+.team2-stats {
+  text-align: right;
+  margin-left: 10px;
+}
+
+.popup-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.stat-btn {
+  background-color: #3498db; /* Plava boja za dugme */
+  color: white;
+  border: none;
+  padding: 12px 24px; /* Veće udaljenosti za dugme */
+  border-radius: 6px; /* Zaobljeni uglovi za dugme */
+  cursor: pointer;
+  font-size: 18px; /* Veće font veličine za dugme */
+  margin: 0 10px; /* Veći razmak između dugmadi */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Glatke promene za hover efekte */
+}
+
+.stat-btn:hover {
+  background-color: #2980b9; /* Tamnija boja na hover */
+  transform: scale(1.05); /* Blago uvećanje na hover */
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.spinner {
+  border: 16px solid #f3f3f3; /* Svetla siva za spinner */
+  border-top: 16px solid #3498db; /* Plava boja za spinner */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

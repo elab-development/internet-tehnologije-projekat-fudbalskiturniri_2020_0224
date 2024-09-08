@@ -1,98 +1,123 @@
+/* src/CreateNewTeam.css */
+
 .create-new-team-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: 30px;
   margin-top: 50px;
+  background-color: #222; /* Dark background for the container */
+  border-radius: 12px; /* More rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
 }
 
 .create-new-team-container h2 {
-  margin-bottom: 20px;
+  margin-bottom: 30px; /* Increased margin for spacing */
+  font-size: 28px; /* Larger font size */
+  color: #e0e0e0; /* Light gray text color */
 }
 
 .input-container {
-  margin-bottom: 20px;
+  margin-bottom: 30px; /* Increased margin for spacing */
   width: 100%;
   max-width: 600px;
 }
 
 .input-container label {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  font-size: 18px; /* Larger font size */
+  color: #e0e0e0; /* Light gray text color */
 }
 
 .input-container input {
   padding: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 1px solid #555; /* Darker border */
+  border-radius: 8px; /* More rounded corners */
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   font-size: 16px;
+  background-color: #333; /* Darker input background */
+  color: #fff; /* White text color */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 .player-row {
   display: flex;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 20px; /* Increased margin */
 }
 
 .player-row input {
-  margin-right: 10px;
+  margin-right: 15px; /* Increased margin */
   flex: 1;
-  padding: 10px 20px;
-  font-size: 15px;
-  width: 150px;
-  background-color: #333;
-  color: white;
+  padding: 12px;
+  font-size: 16px;
+  width: 200px; /* Increased width */
+  background-color: #444; /* Darker background */
+  color: #fff; /* White text color */
+  border: 1px solid #555; /* Darker border */
+  border-radius: 8px; /* More rounded corners */
 }
 
 .choose-player-btn,
 .new-player-btn {
-  padding: 10px 20px;
+  padding: 12px 24px; /* Larger padding */
   border: none;
-  border-radius: 5px;
+  border-radius: 8px; /* More rounded corners */
   cursor: pointer;
   color: white;
-  background-color: #007bff;
+  font-size: 16px; /* Medium font size */
+  transition: background-color 0.3s ease;
+  margin: 10px; /* Added margin around buttons */
 }
-.new-player-btn {
-  background-color: #28a745;
-  margin-left: 10px;
-}
-.new-player-btn:hover {
-  background-color: #1f8136;
+
+.choose-player-btn {
+  background-color: #4a90e2; /* Modern blue */
 }
 
 .choose-player-btn:hover {
-  background-color: #0056b3;
+  background-color: #357ABD; /* Darker blue */
+}
+
+.new-player-btn {
+  background-color: #50E3C2; /* Modern green */
+  margin-left: 12px; /* Adjusted margin */
+}
+
+.new-player-btn:hover {
+  background-color: #1DB954; /* Darker green */
 }
 
 .button-container {
   display: flex;
-  gap: 10px; /* Space between buttons */
+  gap: 12px; /* Increased gap between buttons */
+  margin-top: 20px; /* Added margin at the top for spacing */
 }
 
 .action-btn {
-  padding: 10px 20px;
+  padding: 12px 24px;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   color: white;
+  font-size: 16px; /* Medium font size */
+  margin: 10px; /* Added margin around action buttons */
 }
 
 .create-back-btn {
-  background-color: #6c757d;
+  background-color: #6c757d; /* Grayish color */
 }
 
 .create-back-btn:hover {
-  background-color: #5a6268;
+  background-color: #5a6268; /* Darker gray */
 }
 
 .add-team-btn {
-  background-color: #28a745;
+  background-color: #50E3C2; /* Modern green */
 }
 
 .add-team-btn:hover {
-  background-color: #218838;
+  background-color: #1DB954; /* Darker green */
 }

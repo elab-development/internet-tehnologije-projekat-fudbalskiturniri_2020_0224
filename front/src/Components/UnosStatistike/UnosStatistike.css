@@ -1,72 +1,99 @@
 .popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .popup-content {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    width: 80%;
-    max-width: 800px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .close-btn {
-    background: transparent;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-  }
-  
-  .team-stats {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .team-column {
-    flex: 1;
-    margin: 0 10px;
-  }
-  
-  .stats-table {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 10px;
-  }
-  
-  .stats-row {
-    display: contents;
-  }
-  
-  .stats-row span {
-    padding: 5px;
-  }
-  
-  .stats-row input {
-    width: 100%;
-  }
-  
-  
-  .update-btn {
-    background-color: #3498db;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    margin: 0 5px;
-  }
-  .update-btn:hover {
-    background-color: #2980b9;
-  }
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Tamnija overlay pozadina za bolji kontrast */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-content {
+  background: #1e1e1e; /* Moderna, tamna crna boja pozadine */
+  padding: 30px; /* Povećano obaveštavanje za bolju distancu */
+  border-radius: 12px; /* Zaobljeni uglovi za mekši izgled */
+  width: 90%;
+  max-width: 1300px; /* Povećana maksimalna širina */
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Dodata senka za dubinu */
+  color: #fff; /* Bela boja za sav tekst u kartici */
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  font-size: 28px; /* Veće dugme za lakše klikove */
+  color: #fff; /* Bele boje za bolji kontrast na crnoj pozadini */
+  cursor: pointer;
+  align-self: flex-end; /* Poravnato u gornjem desnom uglu */
+  margin-bottom: 20px; /* Dodana margina za razmak */
+}
+
+.team-stats {
+  display: flex;
+  justify-content: space-around; /* Ravnotežno raspoređeni stupci */
+  margin-bottom: 20px; /* Dodana margina za razmak između timova */
+}
+
+.team-column {
+  flex: 1;
+  margin: 0 15px; /* Povećana margina za bolji razmak */
+}
+
+.stats-table {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px; /* Veći razmak za bolju čitljivost */
+}
+
+.stats-row {
+  display: contents;
+}
+
+.stats-row span {
+  padding: 8px; /* Povećano obaveštavanje za bolji razmak */
+  font-weight: bold; /* Bold font za bolju čitljivost */
+  color: #fff; /* Bela boja za labele i naslove */
+}
+
+.stats-row input {
+  width: 100%;
+  border: 1px solid #444; /* Tamnija boja granice za bolju vidljivost */
+  border-radius: 4px; /* Zaobljeni ivice za doslednost */
+  padding: 8px; /* Dodato obaveštavanje unutar input polja */
+  background: #333; /* Tamnija pozadina za input polja */
+  color: #fff; /* Bele boje za tekst u input polju */
+}
+
+.update-btn {
+  background-color: #2ecc71; /* Osvežena boja za dugme */
+  color: white;
+  border: none;
+  padding: 14px 24px; /* Povećano obaveštavanje za bolje dugme */
+  border-radius: 8px; /* Zaobljeni uglovi za dugme */
+  cursor: pointer;
+  font-size: 18px; /* Veći font za čitljivost */
+  margin: 10px 0; /* Prilagođena margina za razmak */
+  transition: background-color 0.3s; /* Dodata animacija za glatkiji hover efekat */
+}
+
+.update-btn:hover {
+  background-color: #27ae60; /* Tamnija boja dugmeta pri hover efektu */
+}
+
+.popup-content h2 {
+  color: #d3d3d3; /* Svetlo siva boja za naslov "Unos statistike utakmice" */
+  margin: 0 0 20px; /* Razmak ispod naslova */
+}
+
+.team-stats h3 {
+  color: #d3d3d3; /* Svetlo siva boja za nazive timova */
+}
+
+.stats-row input,
+.stats-row span {
+  color: #fff; /* Bele boje za sve labele i tekst u tabelama */
+}

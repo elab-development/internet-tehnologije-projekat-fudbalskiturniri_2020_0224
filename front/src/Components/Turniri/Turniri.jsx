@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import "./Turniri.css";
 import Navigacija from "../Navigation/Navigacija";
+
 const Turniri = () => {
   const [tournaments, setTournaments] = useState([]);
   const navigate = useNavigate();
@@ -71,26 +72,30 @@ const Turniri = () => {
             className="tournament-card"
             onClick={() => handleTournamentClick(turnir)}
           >
-            <img
-              src={turnir.logo}
-              alt={turnir.naziv}
-              className="tournament-logo"
-            />
-            <h3>{turnir.naziv}</h3>
-            <p>Lokacija: {turnir.mesto_odrzavanja}</p>
-            <p>Broj Timova: {turnir.broj_ekipa}</p>
-            {role === "user" && (
-              <span
-                className={`favorite-star ${
-                  turnir.isFavorite ? "favorite" : ""
-                }`}
-                onClick={(event) =>
-                  handleFavoriteClick(turnir.id, turnir.isFavorite, event)
-                }
-              >
-                &#9733;
-              </span>
-            )}
+            <div className="card-content">
+              <div className="tournament-info">
+                <h3>{turnir.naziv}</h3>
+                <p>Lokacija: {turnir.mesto_odrzavanja}</p>
+                <p>Broj Timova: {turnir.broj_ekipa}</p>
+                {role === "user" && (
+                  <span
+                    className={`favorite-star ${
+                      turnir.isFavorite ? "favorite" : ""
+                    }`}
+                    onClick={(event) =>
+                      handleFavoriteClick(turnir.id, turnir.isFavorite, event)
+                    }
+                  >
+                    &#9733;
+                  </span>
+                )}
+              </div>
+              <img
+                src={turnir.logo}
+                alt={turnir.naziv}
+                className="tournament-logo"
+              />
+            </div>
           </div>
         ))}
       </div>

@@ -42,7 +42,7 @@ const Igraci = () => {
     };
 
     if (!role) {
-      setRole(location.state?.role || ""); // Postavljanje role ako nije setovano
+      setRole(location.state?.role || ""); // Set role if not already set
     }
 
     fetchPlayers(currentPage);
@@ -63,20 +63,14 @@ const Igraci = () => {
           <div className="players-list-2">
             {players.map((igrac) => (
               <div key={igrac.id} className="player-card">
-                <h3>{igrac.ime}</h3>
-                <h3>{igrac.prezime}</h3>
+                <h3>{igrac.ime} {igrac.prezime}</h3>
                 <p>Pozicija: {igrac.pozicija}</p>
                 <div className="player-stats">
                   <p>Golovi: {igrac.kumulativna_statistika.golovi}</p>
                   <p>Asistencije: {igrac.kumulativna_statistika.asistencije}</p>
                   <p>Faulovi: {igrac.kumulativna_statistika.faulovi}</p>
-                  <p>
-                    Žuti Kartoni: {igrac.kumulativna_statistika.zuti_kartoni}
-                  </p>
-                  <p>
-                    Crveni Kartoni:{" "}
-                    {igrac.kumulativna_statistika.crveni_kartoni}
-                  </p>
+                  <p>Žuti Kartoni: {igrac.kumulativna_statistika.zuti_kartoni}</p>
+                  <p>Crveni Kartoni: {igrac.kumulativna_statistika.crveni_kartoni}</p>
                 </div>
               </div>
             ))}

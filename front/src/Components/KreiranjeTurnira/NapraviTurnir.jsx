@@ -55,54 +55,60 @@ const NapraviTurnir = () => {
     <div className="create-tournament-container">
       <Navigacija role={role} />
       <h2>Napravi novi turnir</h2>
-      <form>
-        <div className="input-container">
-          <label>Naziv turnira:</label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
+      <form className="create-tournament-form">
+        <div className="form-left">
+          <div className="input-container">
+            <label>Naziv turnira:</label>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
+          <div className="input-container">
+            <label>Mesto igranja:</label>
+            <input
+              type="text"
+              value={place}
+              onChange={(e) => setPlace(e.target.value)}
+              required
+            />
+          </div>
+          <div className="input-container">
+            <label>Broj timova:</label>
+            <select
+              value={teams}
+              onChange={(e) => setTeams(e.target.value)}
+              required
+            >
+              <option value="" disabled>
+                Izaberi Broj Timova
+              </option>
+              <option value="4">4</option>
+              <option value="8">8</option>
+              <option value="16">16</option>
+            </select>
+          </div>
         </div>
-        <div className="input-container">
-          <label>Mesto igranja:</label>
-          <input
-            type="text"
-            value={place}
-            onChange={(e) => setPlace(e.target.value)}
-            required
-          />
-        </div>
-        <div className="input-container">
-          <label>Broj timova:</label>
-          <select
-            value={teams}
-            onChange={(e) => setTeams(e.target.value)}
-            required
-          >
-            <option value="" disabled>
-              Izaberi Broj Timova
-            </option>
-            <option value="4">4</option>
-            <option value="8">8</option>
-            <option value="16">16</option>
-          </select>
-        </div>
-        <div className="input-container">
-          <label>Izaberi Logo Turnira:</label>
-          <button
-            type="button"
-            onClick={handleLogoSelection}
-            className="choose-logo-btn"
-          >
-            Izaberi Logo
-          </button>
-          {logo ? (
-            <img src={logo} alt="Selected Logo" className="logo-preview" />
-          ) : (
-            <div className="logo-placeholder"></div>
-          )}
+        <div className="form-right">
+          <div className="input-container">
+            <label>Izaberi Logo Turnira:</label>
+            <button
+              type="button"
+              onClick={handleLogoSelection}
+              className="choose-logo-btn"
+            >
+              Izaberi Logo
+            </button>
+            {logo ? (
+              <img src={logo} alt="Selected Logo" className="logo-preview" />
+            ) : (
+              <div className="logo-placeholder">
+                <p>Logo će se prikazati ovde</p>
+              </div>
+            )}
+          </div>
         </div>
         <div className="button-container">
           <button

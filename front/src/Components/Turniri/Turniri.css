@@ -1,6 +1,9 @@
+/* Global settings */
 body {
   height: 100%;
   margin: 0;
+  font-family: 'Arial', sans-serif; /* Promenjen font za bolju čitljivost */
+  line-height: 1.6; /* Povećan razmak između redova za bolju čitljivost */
 }
 
 .tournaments-container {
@@ -8,73 +11,75 @@ body {
   padding-top: 70px;
 }
 
-.tournaments-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+/* Gridski prikaz za turnire */
+.tournaments-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adaptivni grid */
+  gap: 30px; /* Veći razmak između kartica */
 }
 
+/* Stil za individualne kartice */
 .tournament-card {
   border: 1px solid #ddd;
-  background-color: #fefefa;
-  border-radius: 12px;
-  padding: 15px;
-  max-width: 300px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
+  background-color: #fefefe; /* Svetlija pozadina za bolju čitljivost */
+  border-radius: 12px; /* Zaobljene ivice */
+  padding: 20px;
+  max-width: 100%; /* Širina je fleksibilna unutar grid-a */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Blaga senka */
+  transition: transform 0.3s, box-shadow 0.3s; /* Animacije pri hoveru */
 }
 
 .tournament-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Jača senka pri hoveru */
   cursor: pointer;
 }
 
-.tournament-logo {
-  width: 100px;
-  height: auto;
-  margin-bottom: 10px;
+/* Flexbox layout unutar kartice */
+.card-content {
+  display: flex;
+  align-items: center;
 }
 
+/* Povećan logo sa zaobljenim ivicama */
+.tournament-logo {
+  width: 120px; /* Povećana veličina logotipa */
+  height: auto;
+  border-radius: 10px; /* Zaobljene ivice za moderniji izgled */
+  margin-right: 20px; /* Razmak između slike i teksta */
+}
+
+/* Sekcija sa informacijama o turniru */
+.tournament-info {
+  flex: 1;
+}
+
+/* Naslovi i tekst */
 h2,
 h3 {
-  text-align: center;
   margin-bottom: 20px;
   font-weight: bold;
   color: #333;
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 26px; /* Povećan font za bolju vidljivost */
+  text-align: center;
+  font-family: 'Verdana', sans-serif; /* Moderniji font */
 }
 
 h3 {
-  font-size: 20px;
+  font-size: 22px; /* Povećan font za bolju vidljivost */
+  font-family: 'Verdana', sans-serif; /* Moderniji font */
 }
 
 p {
-  font-size: 16px;
+  font-size: 18px; /* Povećan font za bolju čitljivost */
   margin-bottom: 10px;
-  color: #333; /* Darker text color */
+  color: #333;
 }
 
-.button {
-  background: linear-gradient(135deg, #3532cd, #333);
-  color: white;
-  border: none;
-  border-radius: 10px;
-  padding: 10px 20px;
-  cursor: pointer;
-  margin-top: 10px;
-  font-weight: bold;
-  transition: background-color 0.3s;
-}
-
-.button:hover {
-  background-color: #333;
-}
-
+/* Zvezdica za omiljene turnire */
 .favorite-star {
   font-size: 24px;
   cursor: pointer;
@@ -86,10 +91,11 @@ p {
   color: gold;
 }
 
+/* Navigacija */
 .navigation {
-  background-color: #3532cd;
-  padding: 10px 20px;
-  border-bottom: 1px solid #444;
+  background-color: #6ca0dc; /* Svetlo plava boja navigacije, tamnija nijansa */
+  padding: 15px 30px; /* Povećan padding za bolju vidljivost */
+  border-bottom: 2px solid #8AB8E0; /* Kontrastni obrub svetlije plave boje */
   width: 100%;
   position: fixed;
   top: 0;
@@ -98,7 +104,7 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #fff;
+  color: #222; /* Tamnija boja teksta za bolju čitljivost */
 }
 
 .navigation ul {
@@ -115,26 +121,28 @@ p {
 
 .navigation a {
   text-decoration: none;
-  color: white;
+  color: #333; /* Tamnija boja linkova */
   font-weight: bold;
+  font-size: 18px; /* Veći font za bolju čitljivost */
 }
 
 .navigation a:hover {
-  color: #ddd;
+  color: #666; /* Svetlija boja pri hoveru */
 }
 
-/* Logout button styling */
+/* Stil dugmeta za odjavu */
 .logout-btn {
-  background-color: #dc3545;
-  color: white;
+  background-color: #6CA0DC; /* Usklađena boja sa navigacijom */
+  color: #fff; /* Bela boja teksta za dobar kontrast */
   margin-right: 30px;
   border: none;
   border-radius: 10px;
   padding: 10px 20px;
   cursor: pointer;
   transition: background-color 0.3s;
+  font-size: 16px; /* Veći font za bolju vidljivost */
 }
 
 .logout-btn:hover {
-  background-color: #811620;
+  background-color: #5A8EDC; /* Tamnija nijansa svetle plave pri hoveru */
 }

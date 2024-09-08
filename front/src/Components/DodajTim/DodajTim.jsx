@@ -141,62 +141,68 @@ const DodajTim = () => {
     <div className="add-teams-container">
       <Navigacija role={role} />
       <h2>DODAJ TIMOVE U TURNIR</h2>
-      <div className="tournament-info">
-        <p>
-          <strong>NAZIV TURNIRA:</strong> {tournamentName}
-        </p>
-        {logo && (
-          <div className="logo-container">
-            <img src={logo} alt="Tournament Logo" className="logo-image" />
+      <div className="content-container">
+        <div className="left-side">
+          <div className="tournament-info">
+            <p>
+              <strong>NAZIV TURNIRA:</strong> {tournamentName}
+            </p>
+            {logo && (
+              <div className="logo-container">
+                <img src={logo} alt="Tournament Logo" className="logo-image" />
+              </div>
+            )}
+            <p>
+              <strong>MESTO IGRANJA:</strong> {placeOfPlaying}
+            </p>
           </div>
-        )}
-        <p>
-          <strong>MESTO IGRANJA:</strong> {placeOfPlaying}
-        </p>
-      </div>
-      <form className="teams-form">
-        {teams.map((team, index) => (
-          <div key={index} className="team-row">
-            <input
-              type="text"
-              placeholder="Ime Tima"
-              value={team.naziv}
-              className="team-input"
-              disabled
-            />
-            <button
-              type="button"
-              onClick={() => handleChooseTeam(index)}
-              className="choose-team-btn"
-            >
-              Izaberi Postojeće Timove
-            </button>
-            <button
-              type="button"
-              onClick={() => handleCreateNewTeam(index)}
-              className="create-team-btn"
-            >
-              Napravi Novi Tim
-            </button>
-          </div>
-        ))}
-        <div className="button-container">
-          <button
-            type="button"
-            onClick={handleBackClick}
-            className="action-btn create-back-btn"
-          >
-            Nazad
-          </button>
-          <button
-            type="button"
-            onClick={handleCreateTournament}
-            className="action-btn create-tournament-btn"
-          >
-            Kreiraj Turnir
-          </button>
         </div>
-      </form>
+        <div className="right-side">
+          <form className="teams-form">
+            {teams.map((team, index) => (
+              <div key={index} className="team-row">
+                <input
+                  type="text"
+                  placeholder="Ime Tima"
+                  value={team.naziv}
+                  className="team-input"
+                  disabled
+                />
+                <button
+                  type="button"
+                  onClick={() => handleChooseTeam(index)}
+                  className="choose-team-btn"
+                >
+                  Izaberi Postojeće Timove
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleCreateNewTeam(index)}
+                  className="create-team-btn"
+                >
+                  Napravi Novi Tim
+                </button>
+              </div>
+            ))}
+            <div className="button-container">
+              <button
+                type="button"
+                onClick={handleBackClick}
+                className="action-btn create-back-btn"
+              >
+                Nazad
+              </button>
+              <button
+                type="button"
+                onClick={handleCreateTournament}
+                className="action-btn create-tournament-btn"
+              >
+                Kreiraj Turnir
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
       {isModalOpen && (
         <TimModal
           isOpen={isModalOpen}

@@ -1,18 +1,15 @@
-
 .page-container {
   display: flex;
   height: auto;
   width: 100vw;
   height: 100vh;
- 
 }
 
-
 .sidebar {
-  width: 250px;
-  background-color: #333;
+  width: 200px; /* Smanjena širina sidebar-a */
+  background-color: #6ca0dc; /* Boja sidebar-a */
   border-right: 1px solid #444;
-  color: #fff;
+  color: #fff; /* Boja teksta u sidebar-u */
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   padding-left: 20px;
   padding-top: 20px;
@@ -20,19 +17,17 @@
   position: fixed; 
   height: 100vh; /* Sidebar zauzima celu visinu stranice */
   overflow-y: auto; /* Dodaj overflow ako sadrži više elemenata nego što može stati na ekran */
-  z-index: 1000; 
- 
-  
-
-
+  z-index: 1000;
 }
-.sidebar .tournaments-list{
+
+.sidebar .tournaments-list {
   display: flex;
   flex-direction: column;
-  gap:0px;
+  gap: 0px;
   text-align: center;
 }
-.sidebar .tournaments-list .tournament-item{
+
+.sidebar .tournaments-list .tournament-item {
   cursor: pointer;
 }
 
@@ -40,7 +35,7 @@
   margin: 0 0 20px 0;
   text-align: center;
   font-size: 20px;
-  color:white;
+  color: #222; /* Boja teksta za Svi Turniri */
 }
 
 .sidebar ul {
@@ -63,9 +58,8 @@
   flex-grow: 1;
   padding: 30px;
   margin-top: 60px;
-  margin-left: 250px;
+  margin-left: 200px; /* Uskladiti sa smanjenom širinom sidebar-a */
   border-radius: 10px; /* Rounded corners */
-  
 }
 
 .tournament-title {
@@ -76,7 +70,6 @@
   color: #007bff;
   text-transform: uppercase;
   letter-spacing: 1px; 
-  
 }
 
 .tournament-item {
@@ -100,7 +93,7 @@
   margin-bottom: 20px;
   font-size: 22px;
   font-weight: bold;
-  color: #555;
+  color: #222; /* Boja teksta za "polu-finale" i "finale" */
   border-bottom: 2px solid #ddd; /* Underline */
   padding-bottom: 5px;
 }
@@ -110,12 +103,14 @@
   grid-template-columns: 1fr 1fr !important;
   gap: 15px;
 }
+
 .matches-list.final {
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
 }
-.matches-list.final .match-card{
+
+.matches-list.final .match-card {
   width: 50%;
 }
 
@@ -125,9 +120,9 @@
   align-items: center;
   padding: 15px;
   border: 1px solid #ddd;
-  border-radius: 12px; 
-  color: #333;
-  background: #fff; 
+  border-radius: 12px;
+  color: #fff; /* Bele boje za tekst */
+  background: #222; /* Crna boja za pozadinu kartice */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s;
 }
@@ -137,12 +132,9 @@
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
 }
 
-
-
 .match-info {
   flex: 1;
   font-size: 18px;
-  ;
 }
 
 .match-actions {
@@ -162,7 +154,7 @@
 .end-btn {
   padding: 10px;
   margin-right: 10px;
-  border: 1px solid #ddd;
+  border: none; /* Uklanjanje granica oko dugmadi */
   border-radius: 10px;
   text-transform: uppercase;
   font-weight: bold;
@@ -170,47 +162,47 @@
   letter-spacing: 0.5px;
   min-width: 120px; /* Ensures consistent width */
   text-align: center;
+  color: #fff; /* Bele boje za tekst dugmadi */
 }
+
 .match-status.in_progress {
-  background-color: #f1c40f; /* Stronger yellow */
-  color: #fff; /* White text */
+  background-color: #f1c40f; /* Svetlo žuta */
+  color: #fff; /* Bele boje teksta */
 }
 
 .match-status.completed {
-  background-color: #2ecc71; /* Stronger green */
-  color: #fff;
+  background-color: #2ecc71; /* Svetlo zelena */
+  color: #fff; /* Bele boje teksta */
 }
 
 .match-status.not_started {
-  background-color: #95a5a6; /* Stronger gray */
-  color: #fff;
+  background-color: #95a5a6; /* Svetlo siva */
+  color: #fff; /* Bele boje teksta */
 }
 
-.stats-btn,
-.start-btn,
+.stats-btn {
+  background: linear-gradient(135deg, #4a90e2, #0033cc); /* Svetlo plavi gradijent */
+}
+
+.stats-btn:hover {
+  background: linear-gradient(135deg, #0033cc, #4a90e2); /* Tamniji plavi gradijent na hover */
+}
+
+.start-btn {
+  background: linear-gradient(135deg, #32cd32, #228b22); /* Svetlo zeleni gradijent */
+}
+
+.start-btn:hover {
+  background: linear-gradient(135deg, #228b22, #32cd32); /* Tamniji zeleni gradijent na hover */
+}
+
 .end-btn {
-  cursor: pointer;
-  transition: background-color 0.3s;
-  color: white;
-}
-
-.start-btn, .stats-btn {
-  background: linear-gradient(135deg, #4CAF50, #45a049); /* Gradient background */
-}
-
-.start-btn:hover, .stats-btn:hover {
-  background-color: #45a049; /* Darker green on hover */
-}
-
-.end-btn {
-  background: linear-gradient(135deg, #f44336, #d32f2f); /* Gradient background */
+  background: linear-gradient(135deg, #e74c3c, #c0392b); /* Svetlo crveni gradijent */
 }
 
 .end-btn:hover {
-  background-color: #d32f2f; /* Darker red on hover */
+  background: linear-gradient(135deg, #c0392b, #e74c3c); /* Tamniji crveni gradijent na hover */
 }
-
-
 
 .action-buttons {
   display: flex;
@@ -233,11 +225,9 @@
   cursor: pointer;
   border-radius: 6px; 
   transition: background-color 0.3s, box-shadow 0.3s;
-
 }
 
 .action-btn:hover {
   background-color: #0056b3;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-
