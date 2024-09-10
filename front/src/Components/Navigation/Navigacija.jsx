@@ -41,13 +41,13 @@ const Navigacija = ({ role }) => {
             </Link>
           </li>
         )}
-        {/* {role === "user" && (
+        {role === "user" && (
           <li>
-            <Link to="/premier-league" state={{ role }}>
-              Premier liga
+            <Link to="/serie-a" state={{ role }}>
+              Serie-a
             </Link>
           </li>
-        )} */}
+        )}
       </ul>
       <button onClick={handleLogout} className="logout-btn">
         Odjavi se
