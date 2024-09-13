@@ -60,6 +60,7 @@ const UnosStatistike = ({ id, onClose }) => {
           shotsOnTarget: igrac.statistika_igraca.sutevi_u_gol,
           shotsOffTarget: igrac.statistika_igraca.sutevi_van_gola,
         }));
+        console.log(homeTeamStats);
 
         const awayTeamStats = data.gostujuci_tim.igraci.map((igrac) => ({
           id: igrac.id,
@@ -82,7 +83,7 @@ const UnosStatistike = ({ id, onClose }) => {
           shotsOffTarget: homeTeamStats.map((igrac) => igrac.sutevi_van_gola),
           yellowCards: homeTeamStats.map((igrac) => igrac.zuti_kartoni),
           redCards: homeTeamStats.map((igrac) => igrac.crveni_kartoni),
-          possession: data.statistika_utakmice.posed_lopte_domacin || 0,
+          possession: data.statistika_utakmice.posed_lopte_domacina || 0,
         });
 
         setTeam2Stats({
@@ -94,7 +95,7 @@ const UnosStatistike = ({ id, onClose }) => {
           shotsOffTarget: awayTeamStats.map((igrac) => igrac.sutevi_van_gola),
           yellowCards: awayTeamStats.map((igrac) => igrac.zuti_kartoni),
           redCards: awayTeamStats.map((igrac) => igrac.crveni_kartoni),
-          possession: data.statistika_utakmice.posed_lopte_domacin || 0,
+          possession: data.statistika_utakmice.posed_lopte_gosta || 0,
         });
       } catch (error) {
         console.error("Error fetching player stats:", error);
@@ -159,15 +160,15 @@ const UnosStatistike = ({ id, onClose }) => {
     try {
       const updatedStats = {
         domaci_tim: {
-          players: team1Stats,
+          igraci: team1Stats,
           possession: team1Stats.possession,
         },
-        away_team: {
-          players: team2Stats,
+        gostujuci_tim: {
+          igraci: team2Stats,
           possession: team2Stats.possession,
         },
       };
-
+      console.log(updatedStats);
       const response = await axios.put(
         `http://localhost:8000/api/utakmice/${id}`,
         updatedStats,
@@ -181,7 +182,7 @@ const UnosStatistike = ({ id, onClose }) => {
       console.log(response.data);
 
       alert("Statistika uspešno sačuvana");
-      onClose();
+      //onClose();
     } catch (error) {
       console.error("Error saving player stats:", error);
       alert("Došlo je do greške prilikom čuvanja statistike");
@@ -254,8 +255,6 @@ const UnosStatistike = ({ id, onClose }) => {
         return "";
     }
   };
-
-  
 
   return (
     <div className="popup-overlay">

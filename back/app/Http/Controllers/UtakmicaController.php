@@ -5,11 +5,12 @@ use App\Http\Resources\UtakmicaResource;
 use App\Models\Utakmica;
 use App\Models\Tim;
 use Illuminate\Http\Request;
-use App\Models\Tournament;
 use App\Models\Turnir;
-use App\Events\TurnirUpdated;
+use App\Events\AzuriranjeTurnira;
+use App\Models\StatistikaIgraca;
 use App\Events\StatistikaUtakmiceUpdated;
- 
+use Illuminate\Support\Facades\Log;
+
 class UtakmicaController extends Controller
 {
     public function index()
@@ -53,61 +54,63 @@ class UtakmicaController extends Controller
     {
  
         try{
-            $utakmica = Utakmica::findOrFail($id);
+            $game = Utakmica::findOrFail($id);
 
             
-            $gameStats = $utakmica->statistika_utakmice;
-            $gameStats->sutevi_u_gol_domacina = array_sum($request->input('home_team.players.shotsOnTarget'));
-            $gameStats->sutevi_van_gola_domacina = array_sum($request->input('home_team.players.shotsOffTarget'));
-            $gameStats->sut_u_okvir_gost = array_sum($request->input('away_team.players.shotsOnTarget'));
-            $gameStats->sut_van_okvira_gost = array_sum($request->input('away_team.players.shotsOffTarget'));
-            $gameStats->broj_suteva_domacin= $gameStats->sut_u_okvir_domacin +   $gameStats->sut_van_okvira_domacin;
-            $gameStats->broj_suteva_gost=$gameStats->sut_u_okvir_gost +  $gameStats->sut_van_okvira_gost;
-            $gameStats->posed_lopte_domacin = $request->input('home_team.possession');
-            $gameStats->posed_lopte_gost = $request->input('away_team.possession');
+            $gameStats = $game->statistika_utakmice;
+            $gameStats->sutevi_u_gol_domacina = array_sum($request->input('domaci_tim.igraci.shotsOnTarget'));
+            $gameStats->sutevi_van_gola_domacina = array_sum($request->input('domaci_tim.igraci.shotsOffTarget'));
+            $gameStats->sutevi_u_gol_gosta = array_sum($request->input('gostujuci_tim.igraci.shotsOnTarget'));
+            $gameStats->sutevi_van_gola_gosta = array_sum($request->input('gostujuci_tim.igraci.shotsOffTarget'));
+            $gameStats->sutevi_domacina= $gameStats->sutevi_u_gol_domacina +   $gameStats->sutevi_van_gola_domacina;
+            $gameStats->sutevi_gosta=$gameStats->sutevi_u_gol_gosta +  $gameStats->sutevi_van_gola_gosta;
+            $gameStats->posed_lopte_domacina = $request->input('domaci_tim.possession');
+            $gameStats->posed_lopte_gosta = $request->input('gostujuci_tim.possession');
             $gameStats->save();
 
            
-            $homeTeamStats = $request->input('home_team.players');
+            $homeTeamStats = $request->input('domaci_tim.igraci');
             $totalHomeGoals = 0; 
             foreach ($homeTeamStats['id'] as $index => $playerId) {
-                $playerStats = StatistikaIgraca::where('game_id', $id)
-                                        ->where('player_id', $playerId)
+                $playerStats = StatistikaIgraca::where('utakmica_id', $id)
+                                        ->where('igrac_id', $playerId)
                                         ->firstOrFail();
-                $playerStats->broj_golova = $homeTeamStats['goals'][$index];
+                $playerStats->golovi = $homeTeamStats['goals'][$index];
                 $totalHomeGoals += $homeTeamStats['goals'][$index];
-                $playerStats->broj_asistencija = $homeTeamStats['assists'][$index];
-                $playerStats->broj_zutih_kartona = $homeTeamStats['yellowCards'][$index];
-                $playerStats->broj_crvenih_kartona = $homeTeamStats['redCards'][$index];
-                $playerStats->broj_suta_u_ovkir = $homeTeamStats['shotsOnTarget'][$index];
-                $playerStats->broj_suta_van_okvira = $homeTeamStats['shotsOffTarget'][$index];
+                $playerStats->asistencije = $homeTeamStats['assists'][$index];
+                $playerStats->zuti_kartoni = $homeTeamStats['yellowCards'][$index];
+                $playerStats->crveni_kartoni = $homeTeamStats['redCards'][$index];
+                $playerStats->sutevi_u_gol = $homeTeamStats['shotsOnTarget'][$index];
+                $playerStats->sutevi_van_gola = $homeTeamStats['shotsOffTarget'][$index];
                 $playerStats->save();
             }
+            \Log::info($totalHomeGoals);
 
-            $awayTeamStats = $request->input('away_team.players');
+            $awayTeamStats = $request->input('gostujuci_tim.igraci');
             $totalAwayGoals = 0; 
             foreach ($awayTeamStats['id'] as $index => $playerId) {
-                $playerStats = StatistikaIgraca::where('game_id', $id)
-                                        ->where('player_id', $playerId)
+                $playerStats = StatistikaIgraca::where('utakmica_id', $id)
+                                        ->where('igrac_id', $playerId)
                                         ->firstOrFail();
-                $playerStats->broj_golova = $awayTeamStats['goals'][$index];
-                $totalAwayGoals += $awayTeamStats['goals'][$index]; 
-                $playerStats->broj_asistencija = $awayTeamStats['assists'][$index];
-                $playerStats->broj_zutih_kartona = $awayTeamStats['yellowCards'][$index];
-                $playerStats->broj_crvenih_kartona = $awayTeamStats['redCards'][$index];
-                $playerStats->broj_suta_u_ovkir = $awayTeamStats['shotsOnTarget'][$index];
-                $playerStats->broj_suta_van_okvira = $awayTeamStats['shotsOffTarget'][$index];
+                $playerStats->golovi = $awayTeamStats['goals'][$index];
+                $totalAwayGoals += $awayTeamStats['goals'][$index];
+                $playerStats->asistencije = $awayTeamStats['assists'][$index];
+                $playerStats->zuti_kartoni = $awayTeamStats['yellowCards'][$index];
+                $playerStats->crveni_kartoni = $awayTeamStats['redCards'][$index];
+                $playerStats->sutevi_u_gol = $awayTeamStats['shotsOnTarget'][$index];
+                $playerStats->sutevi_van_gola = $awayTeamStats['shotsOffTarget'][$index];
                 $playerStats->save();
             }
 
           
-            $game->broj_golova_domacin = $totalHomeGoals;
-            $game->broj_golova_gost = $totalAwayGoals;
+            $game->golovi_domaci_tim = $totalHomeGoals;
+            $game->golovi_gostujuci_tim = $totalAwayGoals;
             $game->save();
 
-
+            \Log::info($game->golovi_domaci_tim);
+            \Log::info($game->golovi_gostujuci_tim);
             broadcast(new StatistikaUtakmiceUpdated($game->_id));
-            broadcast(new TurnirUpdated($game->tournament_id));
+            broadcast(new AzuriranjeTurnira($game->turnir_id));
             return response()->json(['message' => 'Game and player stats updated successfully']);
         }
         catch (\Exception $e) {
@@ -120,8 +123,8 @@ class UtakmicaController extends Controller
     public function updateWinner(Request $request,$id){
         try{
             $game = Utakmica::findOrFail($id);
-            $home_team_goals = $game->broj_golova_domacin;
-            $away_team_goals = $game->broj_golova_gost;
+            $home_team_goals = $game->golovi_domaci_tim;
+            $away_team_goals = $game->golovi_gostujuci_tim;
             if($home_team_goals>$away_team_goals || $home_team_goals<$away_team_goals){
                 $game->status = 'completed';
             }
@@ -129,34 +132,35 @@ class UtakmicaController extends Controller
                 return response()->json(['stat'=>false,'message' => 'Broj golova ne sme biti jednak da bi se zavrsila utakmica']);
             }
             if($home_team_goals>$away_team_goals){
-                $game->pobednik =$game->tim1;
+                $game->pobednik_id =$game->domaci_tim;
             }
             else{
-                $game->pobednik = $game->tim2;
+                $game->pobednik_id = $game->gostujuci_tim;
             }
     
             $br = $game->broj_utakmice;
             if($br!==1){
                 $new_game_num = intdiv($br,2);
                 $matchingGame = Utakmica::where('broj_utakmice', $new_game_num)
-                ->where('tournament_id', $game->tournament_id)
+                ->where('turnir_id', $game->turnir_id)
                 ->first();
                
     
                 function createPlayerStatsForTeam($team, $gameId) {
-                    foreach ($team->players as $player) {
+                    \Log::info($team);
+                    foreach ($team->igraci as $player) {
                         $playerStats = StatistikaIgraca::create([
-                            'broj_golova' => 0,
-                            'broj_asistencija' => 0,
-                            'broj_zutih_kartona' => 0,
-                            'broj_crvenih_kartona' => 0,
-                            'broj_suta_u_ovkir' => 0,
-                            'broj_suta_van_okvira' => 0,
-                            'player_id' => $player->_id,
-                            'game_id' => $gameId
+                            'golovi' => 0,
+                            'asistencije' => 0,
+                            'zuti_kartoni' => 0,
+                            'crveni_kartoni' => 0,
+                            'sutevi_u_gol' => 0,
+                            'sutevi_van_gola' => 0,
+                            'igrac_id' => $player->_id,
+                            'utakmica_id' => $gameId
                         ]);
                 
-                        $player->stats_player()->save($playerStats);
+                        $player->statistika_igraca()->save($playerStats);
                     }
                 }
                 
@@ -165,16 +169,17 @@ class UtakmicaController extends Controller
     
                 $home = $br%2;
                 if($home){
-                    $matchingGame->team1()->associate($game->pobednik);
-                    $homeTeam = $matchingGame->team1;
+                    $matchingGame->domaci()->associate($game->pobednik_id);
+                    $homeTeam = $matchingGame->domaci;
+                    \Log::info($matchingGame);
                     createPlayerStatsForTeam($homeTeam, $matchingGame->_id);
                  
             
                
                 }
                 else{
-                    $matchingGame->team2()->associate($game->pobednik);
-                    $awayTeam = $matchingGame->team2;
+                    $matchingGame->gostujuci()->associate($game->pobednik_id);
+                    $awayTeam = $matchingGame->gostujuci;
                     createPlayerStatsForTeam($awayTeam, $matchingGame->_id);
                    
                 }
@@ -199,7 +204,7 @@ class UtakmicaController extends Controller
             $utakmica = Utakmica::findOrFail($id);
             $utakmica->status = $request->input('status');
             $utakmica->save();
-            broadcast(new TurnirUpdated($utakmica->turnir_id));
+            broadcast(new AzuriranjeTurnira($utakmica->turnir_id));
         }
         catch (\Exception $e) {
             \Log::error($e->getMessage());

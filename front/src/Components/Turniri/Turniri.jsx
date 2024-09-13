@@ -74,7 +74,7 @@ const Turniri = () => {
           >
             <div className="card-content">
               <div className="tournament-info">
-                <h3>{turnir.naziv}</h3>
+                <h3 className="naslov">{turnir.naziv}</h3>
                 <p>Lokacija: {turnir.mesto_odrzavanja}</p>
                 <p>Broj Timova: {turnir.broj_ekipa}</p>
                 {role === "user" && (

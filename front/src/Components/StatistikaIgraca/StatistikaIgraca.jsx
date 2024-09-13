@@ -153,7 +153,6 @@ const StatistikaIgraca = ({ id, onClose, matchStatus }) => {
                 <div className="player-stats-detail">
                   <div>Broj golova: {igrac.golovi}</div>
                   <div>Broj asistencija: {igrac.asistencije}</div>
-                  <div>Broj faulova: {igrac.faulovi}</div>
                   <div>Broj žutih kartona: {igrac.zuti_kartoni}</div>
                   <div>Broj crvenih kartona: {igrac.crveni_kartoni}</div>
                   <div>Šutevi u okvir: {igrac.sutevi_u_gol}</div>

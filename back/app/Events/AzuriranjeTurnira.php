@@ -7,7 +7,7 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use App\Http\Resources\TurnirResource;
-class TurniriUpdated implements ShouldBroadcast
+class AzuriranjeTurnira implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets;
     public $turnir_id;
